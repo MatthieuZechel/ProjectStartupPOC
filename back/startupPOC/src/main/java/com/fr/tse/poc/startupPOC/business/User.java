@@ -37,10 +37,13 @@ public class User {
     private List<Project> projectsManaged;
 
 
-    public User(String userLastName, String userName, String email, String profile, Long managerId) {
+    public User(){}
+
+    public User(String userLastName, String userName, String email, String password, String profile, Long managerId) {
         this.userLastName = userLastName;
         this.userName = userName;
         this.email = email;
+        this.password = password;
         this.profile = profile;
         this.manager = null;
     }

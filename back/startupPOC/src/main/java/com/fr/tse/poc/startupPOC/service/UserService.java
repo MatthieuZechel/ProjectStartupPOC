@@ -15,9 +15,9 @@ public interface UserService {
 
     User updateUser(Long userId, String userLastName, String userName, String email, String profile,Long managerId);
 
-    User createUser(Long userId, String userLastName, String userName, String email, String profile,Long managerId);
+    User createUser(String userLastName, String userName, String email,String password, String profile,Long managerId);
 
-    User updateUserManager(Long userId,Long managerId);
+    Boolean updateUserManager(Long userId,Long managerId);
 
     Boolean deleteUser(Long userId);
 }
