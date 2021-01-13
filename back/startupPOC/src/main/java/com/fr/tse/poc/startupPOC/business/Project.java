@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Projet {
+public class Project {
 
     @Id @GeneratedValue
     private Long id;
@@ -13,8 +13,15 @@ public class Projet {
 
     private Long chargePrevue;
 
-    private Entreprise client;
+    @ManyToOne
+    private Company client;
 
     @ManyToMany
     private List<User> users;
+
+    @ManyToOne
+    private User projectManager;
+
+    @OneToMany
+    private List<WorkedTime> workedTimes;
 }

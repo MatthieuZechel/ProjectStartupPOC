@@ -19,13 +19,17 @@ public class User {
 
     private String profil;
 
+    @OneToOne
     private User manager;
 
     @ManyToMany
-    private List<Projet> projets;
+    private List<Project> projects;
 
     @OneToMany
-    private List<TempsTravaille> tempsTravailles;
+    private List<WorkedTime> workedTimes;
+
+    @OneToMany
+    private List<Project> projectsManaged;
 
 
 }

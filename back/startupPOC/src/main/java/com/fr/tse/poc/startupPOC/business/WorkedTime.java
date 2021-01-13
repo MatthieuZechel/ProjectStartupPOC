@@ -1,7 +1,5 @@
 package com.fr.tse.poc.startupPOC.business;
 
-import net.bytebuddy.asm.Advice;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +7,7 @@ import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
-public class TempsTravaille {
+public class WorkedTime {
 
     @Id @GeneratedValue
     private Long id;
@@ -18,12 +16,14 @@ public class TempsTravaille {
 
     private Long duree;
 
+    private Integer weekNumber;
+
     @ManyToOne
     private User user;
 
     @ManyToOne
-    private Projet projet;
+    private Project project;
 
-    public TempsTravaille() {
+    public WorkedTime() {
     }
 }
