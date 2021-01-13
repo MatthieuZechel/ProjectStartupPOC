@@ -1,23 +1,28 @@
 package com.fr.tse.poc.startupPOC.business;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class User {
 
     @Id @GeneratedValue
     private Long id;
 
-    private String nom;
+    private String userLastName;
 
-    private String prenom;
+    private String userName;
 
     private String email;
 
     private String password;
 
-    private String profil;
+    private String profile;
 
     @OneToOne
     private User manager;
@@ -32,4 +37,11 @@ public class User {
     private List<Project> projectsManaged;
 
 
+    public User(String userLastName, String userName, String email, String profile, Long managerId) {
+        this.userLastName = userLastName;
+        this.userName = userName;
+        this.email = email;
+        this.profile = profile;
+        this.manager = null;
+    }
 }

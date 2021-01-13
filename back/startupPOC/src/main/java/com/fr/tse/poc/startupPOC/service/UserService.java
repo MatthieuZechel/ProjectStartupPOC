@@ -3,6 +3,7 @@ package com.fr.tse.poc.startupPOC.service;
 import com.fr.tse.poc.startupPOC.business.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
