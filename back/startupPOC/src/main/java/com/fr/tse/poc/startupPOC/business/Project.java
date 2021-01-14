@@ -14,9 +14,9 @@ public class Project {
     @Id @GeneratedValue
     private Long id;
 
-    private String nom;
+    private String name;
 
-    private Long chargePrevue;
+    private Long workLoad;
 
     @ManyToOne
     private Company client;
@@ -29,4 +29,12 @@ public class Project {
 
     @OneToMany
     private List<WorkedTime> workedTimes;
+
+    public Project(String name, Long workLoad, Company client, User projectManager) {
+        this.name = name;
+        this.workLoad = workLoad;
+        this.client = client;
+        this.projectManager = projectManager;
+    }
+
 }

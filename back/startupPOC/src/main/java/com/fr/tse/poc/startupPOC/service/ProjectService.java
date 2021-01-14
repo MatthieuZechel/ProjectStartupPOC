@@ -1,6 +1,8 @@
 package com.fr.tse.poc.startupPOC.service;
 
+import com.fr.tse.poc.startupPOC.business.Company;
 import com.fr.tse.poc.startupPOC.business.Project;
+import com.fr.tse.poc.startupPOC.business.User;
 
 import java.util.List;
 
@@ -14,9 +16,9 @@ public interface ProjectService {
 
     Project updateProject(Long projectId, String nom, Long companyId);
 
-    Project createProject(Long projectId, String nom, Long companyId);
+    Project createProject(String name, Long workLoad, Company client, User projectManager);
 
     List<Project> getManagerAllProjects(Long managerId);
 
-    void deleteProject(Long projectId);
+    Boolean deleteProject(Long projectId);
 }
