@@ -9,6 +9,9 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LoggerModule } from 'ngx-logger';
 import { environment } from '../environments/environment';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { environment } from '../environments/environment';
       serverLoggingUrl: `http://my-api/logs`,
       level: environment.logLevel,
       serverLogLevel: environment.serverLogLevel
-    })
+    }),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    ScheduleModule, 
+    RecurrenceEditorModule
   ],
   bootstrap: [AppComponent]
 })
