@@ -5,13 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
-
+import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class UserServiceImplTest {
 
     private User userTest1;
@@ -25,7 +25,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void souldAddUser() {
+    void shouldAddUser() {
         User user = userService.addUser(userTest1);
 
         assertNotNull(user);
@@ -65,9 +65,9 @@ class UserServiceImplTest {
 
     @Test
     void shouldUpdateUserManager() {
+        assertTrue(userService.updateUserManager(1L,3L));
         User user = userService.getUser(1L);
         assertNotNull(user);
-        assertTrue(userService.updateUserManager(1L,3L));
         assertEquals(3L,user.getManager().getId());
         assertEquals(3L,userService.getUser(1L).getManager().getId());
     }

@@ -20,5 +20,9 @@ public class Company {
     @OneToMany
     private List<Project> projects;
 
-    private String nom;
+    private String name;
+
+    public Company(String name){
+        this.name = name;
+    }
 }
