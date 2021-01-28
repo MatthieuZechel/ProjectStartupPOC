@@ -1,5 +1,6 @@
 package com.fr.tse.poc.startupPOC.business;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ public class WorkedTime {
 
     private LocalDate dateDebut;
 
+    @NotNull
     private Long duree;
 
     private Integer weekNumber;

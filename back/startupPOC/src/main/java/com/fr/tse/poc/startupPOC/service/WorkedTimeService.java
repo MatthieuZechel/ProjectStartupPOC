@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface WorkedTimeService {
 
-    Long getTimeUser(Long userId);
+    Long getTimeUserForMonth(Long userId, Integer month);
 
     Boolean generateReport(Long userId, Month month);
 
