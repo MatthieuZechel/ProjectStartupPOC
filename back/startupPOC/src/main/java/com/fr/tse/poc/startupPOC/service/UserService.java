@@ -1,10 +1,12 @@
 package com.fr.tse.poc.startupPOC.service;
 
 import com.fr.tse.poc.startupPOC.business.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface UserService {
 
     User addUser(User user);

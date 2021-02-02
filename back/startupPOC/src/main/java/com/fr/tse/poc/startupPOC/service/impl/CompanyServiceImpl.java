@@ -6,8 +6,10 @@ import com.fr.tse.poc.startupPOC.business.User;
 import com.fr.tse.poc.startupPOC.dao.CompanyDao;
 import com.fr.tse.poc.startupPOC.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 
 public class CompanyServiceImpl implements CompanyService {
 

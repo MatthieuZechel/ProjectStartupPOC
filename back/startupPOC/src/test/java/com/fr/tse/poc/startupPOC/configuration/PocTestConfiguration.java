@@ -8,22 +8,62 @@ import com.fr.tse.poc.startupPOC.dao.CompanyDao;
 import com.fr.tse.poc.startupPOC.dao.ProjectDao;
 import com.fr.tse.poc.startupPOC.dao.UserDao;
 import com.fr.tse.poc.startupPOC.dao.WorkedTimeDao;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Bean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ContextConfiguration;
+
+import java.time.LocalDate;
 
 @Configuration
+@Getter
 @Slf4j
+//@ContextConfiguration(classes = {ProjectDao.class,UserDao.class,CompanyDao.class,WorkedTimeDao.class})
 public class PocTestConfiguration {
 
+    @Autowired
+    ProjectDao projectDao;
+
+    @Autowired
+    UserDao userDao;
+
+    @Autowired
+    CompanyDao companyDao;
+
+    @Autowired
+    WorkedTimeDao workedTimeDao;
+
+    private User user1;
+
+    private User user2;
+
+    private User user3;
+
+    private User user4;
+
+    private User user5;
+
+    private Project project1;
+
+    private Project project2;
+
+    private Project project3;
+
+    private Company company1;
+
+    private WorkedTime workedTime1;
+
     private void initUsers(UserDao userDao){
-        User user1 = new User("ZECHEL","Matthieu","matthieu.zechel@gmail.com","1234","admin",null);
-        User user2 = new User("LAGRANGE","Erwan","erwan.lagrange@gmail.com","password","admin",null);
-        User user3 = new User("SAGE","Louis","louis.sage@gmail.com","admin","admin",null);
-        User user4 = new User("TESTING","Test","test.test@gmail.com","test","developer",1L);
-        User user5 = new User("TESTING2","Test2","test2@gmail.com","test2","developer",2L);
+        user1 = new User("ZECHEL","Matthieu","matthieu.zechel@gmail.com","1234","admin",null);
+        user2 = new User("LAGRANGE","Erwan","erwan.lagrange@gmail.com","password","admin",null);
+        user3 = new User("SAGE","Louis","louis.sage@gmail.com","admin","admin",null);
+        user4 = new User("TESTING","Test","test.test@gmail.com","test","developer",1L);
+        user5 = new User("TESTING2","Test2","test2@gmail.com","test2","developer",2L);
 
         userDao.save(user1);
         log.info(user1 + " saved to database.");
@@ -38,36 +78,39 @@ public class PocTestConfiguration {
     }
 
     private void initProjects(ProjectDao projectDao){
-        Project project1 = new Project("TestProject1",23L,null,null);
-        Project project2 = new Project("TestProject2",350L,null,null);
+        project1 = new Project("TestProject1",23L,company1,user1);
+        project2 = new Project("TestProject2",350L,company1,user1);
+        project3 = new Project("TestProject3",345L,company1,user2);
 
         projectDao.save(project1);
         log.info(project1 + " saved to database.");
         projectDao.save(project2);
         log.info(project2 + " saved to database.");
+        projectDao.save(project3);
+        log.info(project3 + " saved to database.");
     }
 
     private void initCompany(CompanyDao companyDao){
-        Company company1 = new Company("TestCompany");
+        company1 = new Company("TestCompany");
         companyDao.save(company1);
         log.info(company1 + " saved to database.");
     }
 
-    private void initWorkedTime(){
-
+    private void initWorkedTime(WorkedTimeDao workedTimeDao){
+        workedTime1 = new WorkedTime(LocalDate.now(),3L,user4,project2);
+        workedTimeDao.save(workedTime1);
+        log.info(workedTime1 + " saved to database.");
     }
+
     @Bean
     @Profile("test")
-    CommandLineRunner initTestDatabase(UserDao userDao,
-                                       ProjectDao projectDao,
-                                       CompanyDao companyDao,
-                                       WorkedTimeDao workedTimeDao) {
+    CommandLineRunner initTestDatabase() {
 
         return args -> {
-            initUsers(userDao);
-            initProjects(projectDao);
-            initCompany(companyDao);
-
+            initUsers(this.userDao);
+            initCompany(this.companyDao);
+            initProjects(this.projectDao);
+            initWorkedTime(this.workedTimeDao);
 
             log.info("App initialization for tests finished");
         };

@@ -1,7 +1,9 @@
 package com.fr.tse.poc.startupPOC.service;
 
 import com.fr.tse.poc.startupPOC.business.Company;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface CompanyService {
     Company getCompany(Long companyId);
 

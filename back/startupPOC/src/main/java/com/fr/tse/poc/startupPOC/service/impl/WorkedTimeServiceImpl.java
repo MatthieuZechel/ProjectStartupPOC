@@ -4,6 +4,7 @@ import com.fr.tse.poc.startupPOC.business.WorkedTime;
 import com.fr.tse.poc.startupPOC.dao.WorkedTimeDao;
 import com.fr.tse.poc.startupPOC.service.WorkedTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 public class WorkedTimeServiceImpl implements WorkedTimeService {
 
     @Autowired
@@ -25,6 +27,8 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
 
     private Calendar calendar = new GregorianCalendar();
 
+    private List<WorkedTime> workedTimes = workedTimeDao.findAll();
+
     @Override
     public Long getTimeUserForMonth(Long userId, Integer month) {
 
@@ -32,12 +36,10 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
         LocalDate lastDayOMonth = getLastDayOfMonth(month);
         Optional<Long> hoursWorked;
 
-        List<WorkedTime> workedTimes = workedTimeDao.findAll();
-
         hoursWorked = workedTimes.stream()
                     .filter(workedTime -> workedTime.getUser().getId().equals(userId))
-                    .filter(workedTime -> workedTime.getDateDebut().isAfter(firstDayOfMonth))
-                    .filter(workedTime -> workedTime.getDateDebut().isBefore(lastDayOMonth))
+                    .filter(workedTime -> workedTime.getStartDate().isAfter(firstDayOfMonth))
+                    .filter(workedTime -> workedTime.getStartDate().isBefore(lastDayOMonth))
                     .map(WorkedTime::getDuree)
                     .reduce(Long::sum);
 
@@ -59,12 +61,11 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
 
         LocalDate firstDayOfSelectedWeek = getFirstDayOfWeek(weekNumber);
         LocalDate lastDayOfSelectedWeek = getLastDayOfWeek(weekNumber);
-        List<WorkedTime> workedTimes = workedTimeDao.findAll();
 
         return workedTimes.stream()
                 .filter(workedTime -> workedTime.getUser().getId().equals(userId))
-                .filter(workedTime -> workedTime.getDateDebut().isAfter(firstDayOfSelectedWeek))
-                .filter(workedTime -> ((workedTime.getDateDebut()).with(TemporalAdjusters.next(DayOfWeek.FRIDAY)) ).isBefore(lastDayOfSelectedWeek))
+                .filter(workedTime -> workedTime.getStartDate().isAfter(firstDayOfSelectedWeek))
+                .filter(workedTime -> ((workedTime.getStartDate()).with(TemporalAdjusters.next(DayOfWeek.FRIDAY)) ).isBefore(lastDayOfSelectedWeek))
                 .collect(Collectors.toList());
     }
 
