@@ -23,7 +23,6 @@ import java.time.LocalDate;
 @Configuration
 @Getter
 @Slf4j
-//@ContextConfiguration(classes = {ProjectDao.class,UserDao.class,CompanyDao.class,WorkedTimeDao.class})
 public class PocTestConfiguration {
 
     @Autowired
@@ -53,6 +52,8 @@ public class PocTestConfiguration {
     private Project project2;
 
     private Project project3;
+
+    private Company company;
 
     private Company company1;
 
@@ -91,7 +92,10 @@ public class PocTestConfiguration {
     }
 
     private void initCompany(CompanyDao companyDao){
-        company1 = new Company("TestCompany");
+        company = new Company("TestCompany");
+        companyDao.save(company);
+        log.info(company + " saved to database.");
+        company1 = new Company("TestCompany1");
         companyDao.save(company1);
         log.info(company1 + " saved to database.");
     }

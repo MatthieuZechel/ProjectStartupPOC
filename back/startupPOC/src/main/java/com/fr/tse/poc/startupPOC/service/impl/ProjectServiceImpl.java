@@ -7,12 +7,14 @@ import com.fr.tse.poc.startupPOC.dao.ProjectDao;
 import com.fr.tse.poc.startupPOC.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
@@ -24,11 +26,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Project> getAllProjects() {
         return projectDao.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Project getProject(Long projectId) {
         Optional<Project> project = projectDao.findById(projectId);
         if(project.isPresent()){
@@ -85,6 +89,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Project> getManagerAllProjects(Long managerId) {
         List<Project> projects = projectDao.findAll();
         List<Project> managerProjects  =  projects.stream()

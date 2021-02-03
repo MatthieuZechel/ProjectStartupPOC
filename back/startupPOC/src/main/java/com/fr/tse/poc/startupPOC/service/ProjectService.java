@@ -4,10 +4,12 @@ import com.fr.tse.poc.startupPOC.business.Company;
 import com.fr.tse.poc.startupPOC.business.Project;
 import com.fr.tse.poc.startupPOC.business.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public interface ProjectService {
 
     Project addProject(Project project);
