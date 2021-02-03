@@ -6,8 +6,7 @@ import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-user-home',
-  template: '<ejs-schedule> </ejs-schedule>',
-  //templateUrl: './user-home.component.html',
+  templateUrl: './user-home.component.html',
   styleUrls: ['./user-home.component.css']
 })
 export class UserHomeComponent implements OnInit {
