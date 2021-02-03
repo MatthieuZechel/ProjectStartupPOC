@@ -1,29 +1,24 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeUserComponent } from './home-user/home-user.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 const routes: Routes = [
-  
   {
     path: '',
-    component: HomeUserComponent,
+    component: NavbarComponent,
     children: [
-     {
-       path: '', component: CalendarComponent
-      }
+     { path: '', component: HomeUserComponent }
     ]
   } 
-  
 ];
+
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]

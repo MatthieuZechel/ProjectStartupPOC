@@ -1,5 +1,11 @@
-<app-calendar> </app-calendar>
+<div class="container" fxLayout="row">
 
+    <div fxFlex="20%">
+        <button mat-raised-button id="AddTime" color="primary" (click)="AddTime()">Ajouter du temps</button>
+        <button mat-raised-button color="primary" id="GeneratePDF" (click)="GeneratePDF()" >Générer compte rendu</button>
+    </div>
 
- cc
-sautzz
+    <div fxFlex="80%" >
+        <app-calendar> </app-calendar>
+    </div>
+</div>

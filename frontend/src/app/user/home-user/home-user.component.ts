@@ -13,4 +13,11 @@ export class HomeUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  AddTime(){
+
+  }
+
+  GeneratePDF(){
+    
+  }
 }

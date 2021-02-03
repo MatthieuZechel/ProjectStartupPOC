@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeUserComponent } from './user/home-user/home-user.component';
+import { CalendarComponent } from './user/calendar/calendar.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -13,8 +13,12 @@ const routes: Routes = [{
   component: RegisterComponent
 },
 {
+  path: 'calendar',
+  component: CalendarComponent
+},
+{
   path: 'user',
-  component: HomeUserComponent
+  loadChildren: () => import('./user/user.module').then(m => m.UserModule)
 },
 {
   path: '**',
