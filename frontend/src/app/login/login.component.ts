@@ -9,22 +9,22 @@ import { AuthServiceService } from '../services/auth-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthServiceService) { }
-
+  email: string;
+  mdp: string;
   res = [];
+
+  constructor(private router: Router, private authService: AuthServiceService) { }
 
   ngOnInit(): void {
 
   }
 
   login() {
-    this.authService.sendLoginRequest().subscribe((data: any[])=>{
+    this.authService.sendLoginRequest(this.email, this.mdp).subscribe((data: any[])=>{
       console.log(data);
       this.res = data;
     }) 
   }
-
-   
 
   createAccount() {
       this.router.navigate(['/register']);

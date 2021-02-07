@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -8,13 +9,26 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  email: string;
+  mdp1: string;
+  mdp2: string;
+  res = [];
+
+  constructor(private router: Router, private authService: AuthServiceService) { }
 
   ngOnInit(): void {
   }
 
   createAccount() {
-    this.router.navigate(['/login']);
+    if (this.mdp1 == this.mdp2){
+      this.authService.sendRegisterRequest(this.email, this.mdp1).subscribe((data: any[])=>{
+        console.log(data);
+        this.res = data;
+      }) 
+    }
+    else{
+      alert("les deux mots de passe ne sont pas identiques");
+    }
   }
 
   backToLogin() {
