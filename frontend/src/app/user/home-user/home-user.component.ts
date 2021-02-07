@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import { AddTimeDialogComponent } from '../add-time-dialog/add-time-dialog.component';
 
 @Component({
   selector: 'app-home-user',
@@ -8,13 +10,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class HomeUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
   }
 
-  AddTime(){
+  AddTime() {
+    const dialogRef = this.dialog.open(AddTimeDialogComponent);
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   GeneratePDF(){
