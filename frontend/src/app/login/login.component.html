@@ -8,32 +8,18 @@
                 <mat-form-field class="full-width">
                     <input id="emailInput" matInput placeholder="Email" formControlName="email" autocomplete="email"
                         type="email">
-
-                    <mat-error id="invalidEmailError">
-                        Please enter a valid email address
-                    </mat-error>
-                    <mat-error id="requiredEmailError">
-                        Email is
-                        <strong>required</strong>
-                    </mat-error>
-
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
                     <input id="passwordInput" matInput placeholder="Password" formControlName="password" type="password"
                         autocomplete="current-password">
-                    <mat-error id="requiredPasswordError">
-                        Password is
-                        <strong>required</strong>
-                    </mat-error>
                 </mat-form-field>
 
             </mat-card-content>
 
             <mat-card-actions class="login-actions">
-                <button mat-raised-button id="login" color="primary"
-                    (click)="login()">Login</button>
-                <button mat-button id="createAccount" (click)="createAccount()" type="button">Create Account</button>
+                <button type='button' mat-raised-button id="login" color="primary" (click)="login()">Login</button>
+                <button  mat-button id="createAccount" (click)="createAccount()" type="button">Create Account</button>
             </mat-card-actions>
 
         </mat-card>
