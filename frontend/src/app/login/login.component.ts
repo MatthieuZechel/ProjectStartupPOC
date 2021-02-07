@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.authService.sendLoginRequest(this.email, this.mdp).subscribe((data: any[])=>{
       console.log(data);
       this.res = data;
+      // fonction du role rediriger sur la bonne page et l'écrire dans le session storage (avec nom et prenom)
     }) 
   }
 

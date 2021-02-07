@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { UserServiceService } from 'src/app/services/user-service.service';
 import { AddTimeDialogComponent } from '../add-time-dialog/add-time-dialog.component';
 
 @Component({
@@ -10,9 +11,19 @@ import { AddTimeDialogComponent } from '../add-time-dialog/add-time-dialog.compo
 
 export class HomeUserComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  userId = sessionStorage.getItem("Id");
+  res = [];
+
+  constructor(public dialog: MatDialog, private userService: UserServiceService) {}
 
   ngOnInit(): void {
+    
+    this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any[])=>{
+      console.log(data);
+      this.res = data;
+      // fonction du role rediriger sur la bonne page et l'écrire dans le session storage (avec nom et prenom)
+    }) 
+
   }
 
   AddTime() {

@@ -14,7 +14,7 @@
       <button mat-button [matMenuTriggerFor]="userMenu">
         <mat-icon>person</mat-icon>
         <span fxShow fxHide.xs>
-          Jhon Doe
+          {{Nom}} {{Prenom}}
         </span>
       </button>
       <mat-menu #userMenu="matMenu" xPosition="before" yPosition="above" [overlapTrigger]="false">
@@ -24,7 +24,7 @@
           <span>Mon compte</span>
         </a>
   
-        <a mat-menu-item [routerLink]="['/login']">
+        <a mat-menu-item [routerLink]="['/login']" (click)=Deconnexion()>
           <mat-icon>exit_to_app</mat-icon>
           <span>Déconnexion</span>
         </a>
