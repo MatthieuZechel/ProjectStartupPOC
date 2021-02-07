@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { HomeAdmin2Component } from './admin/home-admin2/home-admin2.component';
 import { LoginComponent } from './login/login.component';
+import { HomeManagerComponent } from './manager/home-manager/home-manager.component';
+import { HomeManager2Component } from './manager/home-manager2/home-manager2.component';
 import { RegisterComponent } from './register/register.component';
-import { CalendarComponent } from './user/calendar/calendar.component';
+import { HomeUserComponent } from './user/home-user/home-user.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -13,16 +17,28 @@ const routes: Routes = [{
   component: RegisterComponent
 },
 {
-  path: 'calendar',
-  component: CalendarComponent
+  path: 'user',
+  component: HomeUserComponent
 },
 {
-  path: 'user',
-  loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  path: 'manager',
+  component: HomeManagerComponent
+},
+{
+  path: 'manager2',
+  component: HomeManager2Component
+},
+{
+  path: 'admin',
+  component: HomeAdminComponent
+},
+{
+  path: 'admin2',
+  component: HomeAdmin2Component
 },
 {
   path: '**',
-  redirectTo: 'user',
+  redirectTo: 'login',
   pathMatch: 'full'
 }];
 

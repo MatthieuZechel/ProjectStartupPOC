@@ -3,16 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // my components
 
-import { CalendarComponent } from './user/calendar/calendar.component';
+import { CalendarComponent } from './calendar/calendar.component';
 import { HomeUserComponent } from './user/home-user/home-user.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 // calendar
 
@@ -20,8 +21,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; 
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-
-import { NavbarComponent } from './navbar/navbar.component';
+import { HomeManagerComponent } from './manager/home-manager/home-manager.component';
+import { HomeManager2Component } from './manager/home-manager2/home-manager2.component';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { HomeAdmin2Component } from './admin/home-admin2/home-admin2.component';
 
 FullCalendarModule.registerPlugins([ 
   dayGridPlugin,
@@ -34,15 +37,21 @@ FullCalendarModule.registerPlugins([
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    CalendarComponent,
+    HomeUserComponent,
+    HomeManagerComponent,
+    HomeManager2Component,
+    HomeAdminComponent,
+    HomeAdmin2Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FullCalendarModule,
-    FlexLayoutModule 
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,67 @@
+
+<app-navbar> </app-navbar>
+
+<div class="container" fxLayout="row" style="padding-top: 4rem;">
+
+    <div fxFlex="20%" style="margin: 1rem;">
+        <mat-form-field class="example-full-width">
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="Sushi">
+          </mat-form-field>
+        
+        
+          <mat-selection-list #shoes [multiple]="false">
+            <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
+              {{shoe}}
+            </mat-list-option>
+          </mat-selection-list>
+          
+          <p>
+            Option selected: {{shoes.selectedOptions.selected[0]?.value}}
+          </p>
+    </div>
+
+    <div fxFlex="50%">
+        <mat-card>
+            <mat-card-title>angular-material-template</mat-card-title>
+            <mat-card-subtitle>Log in to your account</mat-card-subtitle>
+            <mat-card-content>
+        
+                <mat-form-field class="full-width">
+                    <input id="emailInput" matInput placeholder="Email" formControlName="email" autocomplete="email"
+                        type="email">
+        
+                    <mat-error id="invalidEmailError">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error id="requiredEmailError">
+                        Email is
+                        <strong>required</strong>
+                    </mat-error>
+        
+                </mat-form-field>
+        
+                <mat-form-field class="full-width">
+                    <input id="passwordInput" matInput placeholder="Password" formControlName="password" type="password"
+                        autocomplete="current-password">
+                    <mat-error id="requiredPasswordError">
+                        Password is
+                        <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+        
+            </mat-card-content>
+        
+            <mat-card-actions class="login-actions">
+                <button mat-button id="login"  (click)="supprimer()">Supprimer</button>
+                <button mat-raised-button color="primary" id="createAccount" (click)="sauvegarder()" type="button">Sauvegarder</button>
+            </mat-card-actions>
+        
+        </mat-card>
+    </div>
+
+    <div fxFlex="20%">
+        <button style="margin: 1rem;" mat-raised-button color="primary" id="retour" [routerLink]="['/manager']" >retour</button>
+        <button style="margin: 1rem;" mat-raised-button color="primary" id="ajouterNouveauProjet" (click)="ajouterNouveauProjet()" >Ajouter nouveau projet</button>
+    </div>
+</div>

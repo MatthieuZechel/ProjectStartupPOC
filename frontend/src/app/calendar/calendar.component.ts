@@ -15,7 +15,7 @@ export class CalendarComponent  implements OnInit {
   calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
     dateClick: this.handleDateClick.bind(this), // bind is important!
-    height: 'parent',
+    height: '80vh',
     events: [
       { title: 'event 1', date: '2020-06-27' },
       { title: 'event 2', date: '2020-06-30' }
