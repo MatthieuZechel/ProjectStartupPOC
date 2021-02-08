@@ -3,10 +3,7 @@ package com.fr.tse.poc.startupPOC.business;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,11 +11,17 @@ import java.util.List;
 @Setter
 public class Company {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany
     private List<Project> projects;
 
-    private String nom;
+    private String name;
+
+    public Company(){}
+
+    public Company(String name){
+        this.name = name;
+    }
 }
