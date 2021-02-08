@@ -29,6 +29,7 @@ import { HomeManager2Component } from './manager/home-manager2/home-manager2.com
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { HomeAdmin2Component } from './admin/home-admin2/home-admin2.component';
 import { AddTimeDialogComponent } from './user/add-time-dialog/add-time-dialog.component';
+import { UpdateTimeDialogComponent } from './user/update-time-dialog/update-time-dialog.component';
 
 FullCalendarModule.registerPlugins([ 
   dayGridPlugin,
@@ -48,7 +49,8 @@ FullCalendarModule.registerPlugins([
     HomeManager2Component,
     HomeAdminComponent,
     HomeAdmin2Component,
-    AddTimeDialogComponent
+    AddTimeDialogComponent,
+    UpdateTimeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,9 @@ FullCalendarModule.registerPlugins([
     FlexLayoutModule,
     FormsModule
   ],
-  entryComponents: [AddTimeDialogComponent],
+  entryComponents: [
+    AddTimeDialogComponent,
+    UpdateTimeDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

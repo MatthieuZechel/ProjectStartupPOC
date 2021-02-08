@@ -21,7 +21,6 @@ export class HomeUserComponent implements OnInit {
     this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any[])=>{
       console.log(data);
       this.res = data;
-      // fonction du role rediriger sur la bonne page et l'écrire dans le session storage (avec nom et prenom)
     }) 
 
   }
@@ -35,6 +34,6 @@ export class HomeUserComponent implements OnInit {
   }
 
   GeneratePDF(){
-    
+    // a voir comment on fait
   }
 }
