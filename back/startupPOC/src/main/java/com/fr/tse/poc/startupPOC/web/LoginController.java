@@ -3,11 +3,12 @@ package com.fr.tse.poc.startupPOC.web;
 import com.fr.tse.poc.startupPOC.business.User;
 import com.fr.tse.poc.startupPOC.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "", allowedHeaders = "", maxAge = 3600, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.PATCH})
+
 public class LoginController {
 
     @Autowired
@@ -18,8 +19,10 @@ public class LoginController {
         return "pong !";
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/connexion")
+    @RequestMapping(method = RequestMethod.POST, path = "/connexion")
+    @ResponseStatus(HttpStatus.OK)
     public User connect(String email, String password){
+
         return loginService.connexion(email,password);
     }
 

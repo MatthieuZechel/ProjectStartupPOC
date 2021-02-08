@@ -10,11 +10,11 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class UserServiceService {
 
-  private GETTIMEUSER_REQ = "http://localhost:3000/getTimeUser";  //get (userId)
-  private ADDWORKEDTIME_REQ = "http://localhost:3000/addWorkedTime"; // post (userId, projectId, startDate, duration)
-  private GETWORKEDTIMESFORWEEK_REQ = "http://localhost:3000/getWorkedTimesForWeek";  //get (weekNumber, userId)
-  private GENERATEREPORT_REQ = "http://localhost:3000/generateReport"; // get (userId,month)
-  private UPDATEWORKEDTIME_REQ = "http://localhost:3000/updateWorkedTime";  //post (userId, timeWorkedId, startDate, duration)
+  private GETTIMEUSER_REQ = "http://localhost:8080/getTimeUser";  //get (userId)
+  private ADDWORKEDTIME_REQ = "http://localhost:8080/addWorkedTime"; // post (userId, projectId, startDate, duration)
+  private GETWORKEDTIMESFORWEEK_REQ = "http://localhost:8080/getWorkedTimesForWeek";  //get (weekNumber, userId)
+  private GENERATEREPORT_REQ = "http://localhost:8080/generateReport"; // get (userId,month)
+  private UPDATEWORKEDTIME_REQ = "http://localhost:8080/updateWorkedTime";  //post (userId, timeWorkedId, startDate, duration)
 
 
   constructor(private httpClient: HttpClient) { }
