@@ -13,6 +13,11 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+    @RequestMapping(method = RequestMethod.GET, path ="/ping")
+    public String test(){
+        return "pong !";
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/connexion")
     public User connect(String email, String password){
         return loginService.connexion(email,password);
