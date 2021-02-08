@@ -22,11 +22,12 @@ public class LoginServiceImpl implements LoginService {
                 .filter(user -> user.getEmail().equals(email))
                 .findFirst().get();
 
-        if(userConnected.getPassword() == password) {
+        if(userConnected.getPassword().equals(password)) {
             return userConnected;
-        }
+        }else{
 
         return null;
+}
     }
 
     @Override
