@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
 
   email: string;
   mdp: string;
-  res = [];
 
   constructor(private router: Router, private authService: AuthServiceService) { }
 
@@ -21,20 +20,30 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    // this.authService.sendPingRequest().subscribe((data: any[])=>{
-    //   console.log(data);
-    //   this.res = data;
-    //   // fonction du role rediriger sur la bonne page et l'écrire dans le session storage (avec nom et prenom)
-    // })
+    this.authService.sendLoginRequest(this.email, this.mdp).subscribe( (res: any = [] )  =>{
+      console.log(res);
+
+      //var res = JSON.parse(data);
+
+      sessionStorage.setItem("Prenom", res.userName)
+      sessionStorage.setItem("Nom", res.userLastName)
+      sessionStorage.setItem("Id", res.id)
 
 
-    this.authService.sendLoginRequest(this.email, this.mdp).subscribe((data: any[])=>{
-      console.log(data);
-      this.res = data;
+      if(res.profile == "developer")
+        this.router.navigate(['/user']);
+
+      if(res.profile == "manager")
+        this.router.navigate(['/manager']);
+
+      if(res.profile == "admin")
+        this.router.navigate(['/admin']);
+
+      
       // fonction du role rediriger sur la bonne page et l'écrire dans le session storage (avec nom et prenom)
     }) 
 
-    
+
   }
 
   createAccount() {

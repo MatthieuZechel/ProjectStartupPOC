@@ -31,13 +31,13 @@ export class AuthServiceService {
   }
 
   public sendLoginRequest(email, mdp){
-    const options = { email: email, password: mdp} ;
-    return this.httpClient.post(this.LOGIN_REQ, options).pipe(catchError(this.handleError));
+    const options = { email: email, password: mdp};
+    return this.httpClient.post(this.LOGIN_REQ, options);
   } 
 
   public sendRegisterRequest(email, mdp){
     const options = { Email: email, Password: mdp} ;
-    return this.httpClient.get(this.REGISTER_REQ).pipe(catchError(this.handleError));
+    return this.httpClient.post(this.REGISTER_REQ, options);
   }
 
 

@@ -21,9 +21,10 @@ export class RegisterComponent implements OnInit {
 
   createAccount() {
     if (this.mdp1 == this.mdp2){
-      this.authService.sendRegisterRequest(this.email, this.mdp1).subscribe((data: any[])=>{
+      this.authService.sendRegisterRequest(this.email, this.mdp1).subscribe((data: any = [])=>{
         console.log(data);
         this.res = data;
+        alert("votre compte à été créé");
       }) 
     }
     else{

@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "", allowedHeaders = "", maxAge = 3600, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.PATCH})
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class LoginController {
 
@@ -21,9 +21,9 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/connexion")
     @ResponseStatus(HttpStatus.OK)
-    public User connect(String email, String password){
+    public User connect(@RequestBody User credentials){
 
-        return loginService.connexion(email,password);
+        return loginService.connexion(credentials.getEmail(), credentials.getPassword());
     }
 
     @RequestMapping(method = RequestMethod.POST, path="/createAccount")
