@@ -63,6 +63,14 @@ public class ManagerController {
 
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/getAllCompanies")
+    @ResponseStatus(HttpStatus.OK)
+    List<Company> getAllCompanies(){
+
+        return companyService.getAllCompany();
+
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = "/getProject")
     @ResponseStatus(HttpStatus.OK)
     Project getProject(@RequestParam Map<String,String> json){
