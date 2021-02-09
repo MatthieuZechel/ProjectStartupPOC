@@ -31,17 +31,13 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
 
     private Calendar calendar = new GregorianCalendar();
 
-    private  List<WorkedTime> workedTimes;
-
-    @BeforeEach
-    void initList(){
-        workedTimes = this.workedTimeDao.findAll();
-    }
 
 
     @Override
     @Transactional(readOnly = true)
     public Long getTimeUserForMonth(Long userId, Integer month) {
+
+        List<WorkedTime> workedTimes = workedTimeDao.findAll();
 
         LocalDateTime firstDayOfMonth = getFirstDayOfMonth(month);
         LocalDateTime lastDayOMonth = getLastDayOfMonth(month);
@@ -70,6 +66,8 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
     @Transactional(readOnly = true)
     public List<WorkedTime> getWorkedTimesForWeek(Integer weekNumber, Long userId) {
 
+        List<WorkedTime> workedTimes = workedTimeDao.findAll();
+
         LocalDateTime firstDayOfSelectedWeek = getFirstDayOfWeek(weekNumber);
         LocalDateTime lastDayOfSelectedWeek = getLastDayOfWeek(weekNumber);
 
@@ -82,6 +80,8 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
 
     @Override
     public List<WorkedTime> getUserAllWorkedTimes(Long userId) {
+        List<WorkedTime> workedTimes = workedTimeDao.findAll();
+
         return workedTimes.stream()
                 .filter( workedTime -> (workedTime.getUser().getId().equals(userId)))
                 .collect(Collectors.toList());
