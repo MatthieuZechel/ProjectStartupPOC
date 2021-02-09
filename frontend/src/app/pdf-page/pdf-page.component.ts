@@ -1,29 +1,39 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import { UserServiceService } from 'src/app/services/user-service.service';
+
+export interface ProjetTableau {
+  id: string;
+  projet: string;
+  duree: string;
+}
 
 @Component({
   selector: 'app-pdf-page',
   templateUrl: './pdf-page.component.html',
   styleUrls: ['./pdf-page.component.css']
 })
+
 export class PdfPageComponent implements OnInit {
 
   temps = [];
   tempssomme = [];
   projetnom = [];
   projetsid = [];
-  projets = [];
-  user = [];
+  projets: any = [];
+  userId: string;
+  user: any = [];
+  isDataLoaded: boolean;
   displayedColumns: string[] = ["id","projet","duree"];
-  constructor() { }
 
-  
+
+  constructor( private userService: UserServiceService) { }
+
   ngOnInit(): void {
-    this.generertemps()
-    this.calculertemps();
-    this.user = this.temps[0].user;
-    console.log(this.user);
+    this.userId = sessionStorage.getItem("Id");
+    this.generertemps();
+    console.log("temps user", this.user);
   }
 
   calculertemps() {
@@ -34,19 +44,21 @@ export class PdfPageComponent implements OnInit {
       }
     });
     this.projetsid = this.projetsid.filter((v, i, a) => a.indexOf(v) === i);
-    console.log(this.projetsid);
+    console.log("projet id", this.projetsid);
 
     this.tempssomme = Array(this.projetsid.length).fill(0);
     this.temps.forEach(tempi => {
       let i = this.projetsid.indexOf(tempi.project.id);
       this.tempssomme[i] += tempi.duree;
     });
-    console.log(this.tempssomme);
+    console.log("temps somme", this.tempssomme);
 
     for(let i = 0; i < this.projetsid.length; i++){
       let cell = {"id": this.projetsid[i], "duree": this.tempssomme[i], "projet": this.projetnom[i]}
       this.projets.push(cell);
     }
+    this.isDataLoaded = true;
+    console.log("projets", this.projets);
   }
 
   pdf(){
@@ -55,7 +67,7 @@ export class PdfPageComponent implements OnInit {
       const contentDataURL = canvas.toDataURL('image/png')  
       let pdf = new jsPDF('p', 'mm', 'a4');
       pdf.addImage(contentDataURL, 'PNG', 0, 0, 210, 297);  
-      pdf.save('Filename.pdf');   
+      pdf.save('DocumentMensuel.pdf');   
     }); 
   }
 
@@ -74,136 +86,15 @@ export class PdfPageComponent implements OnInit {
   }
 
   generertemps(){
-    this.temps = [
-      {
-          "id": 1,
-          "startDate": "2021-02-09T10:33:26",
-          "duree": 3,
-          "weekNumber": 6,
-          "user": {
-              "id": 4,
-              "userLastName": "TESTING",
-              "userName": "Test",
-              "email": "test.test@gmail.com",
-              "password": "test",
-              "profile": "developer",
-              "manager": null,
-              "projects": [],
-              "workedTimes": [],
-              "projectsManaged": []
-          },
-          "project": {
-              "id": 1,
-              "name": "TestProject1",
-              "workLoad": 350,
-              "client": {
-                  "id": 1,
-                  "projects": [],
-                  "name": "TestCompany1"
-              },
-              "workers": [],
-              "projectManager": {
-                  "id": 1,
-                  "userLastName": "ZECHEL",
-                  "userName": "Matthieu",
-                  "email": "matthieu.zechel@gmail.com",
-                  "password": "1234",
-                  "profile": "admin",
-                  "manager": null,
-                  "projects": [],
-                  "workedTimes": [],
-                  "projectsManaged": []
-              },
-              "workedTimes": []
-          },
-          "weekNumberFromStartDate": 6
-      },
-      {
-        "id": 2,
-        "startDate": "2021-02-09T10:33:26",
-        "duree": 1,
-        "weekNumber": 6,
-        "user": {
-            "id": 4,
-            "userLastName": "TESTING",
-            "userName": "Test",
-            "email": "test.test@gmail.com",
-            "password": "test",
-            "profile": "developer",
-            "manager": null,
-            "projects": [],
-            "workedTimes": [],
-            "projectsManaged": []
-        },
-        "project": {
-            "id": 2,
-            "name": "TestProject2",
-            "workLoad": 350,
-            "client": {
-                "id": 2,
-                "projects": [],
-                "name": "TestCompany2"
-            },
-            "workers": [],
-            "projectManager": {
-                "id": 1,
-                "userLastName": "ZECHEL",
-                "userName": "Matthieu",
-                "email": "matthieu.zechel@gmail.com",
-                "password": "1234",
-                "profile": "admin",
-                "manager": null,
-                "projects": [],
-                "workedTimes": [],
-                "projectsManaged": []
-            },
-            "workedTimes": []
-        },
-        "weekNumberFromStartDate": 6
-    },
-    {
-      "id": 3,
-      "startDate": "2021-02-09T10:33:26",
-      "duree": 2,
-      "weekNumber": 6,
-      "user": {
-          "id": 4,
-          "userLastName": "TESTING",
-          "userName": "Test",
-          "email": "test.test@gmail.com",
-          "password": "test",
-          "profile": "developer",
-          "manager": null,
-          "projects": [],
-          "workedTimes": [],
-          "projectsManaged": []
-      },
-      "project": {
-          "id": 1,
-          "name": "TestProject1",
-          "workLoad": 350,
-          "client": {
-              "id": 1,
-              "projects": [],
-              "name": "TestCompany1"
-          },
-          "workers": [],
-          "projectManager": {
-              "id": 1,
-              "userLastName": "ZECHEL",
-              "userName": "Matthieu",
-              "email": "matthieu.zechel@gmail.com",
-              "password": "1234",
-              "profile": "admin",
-              "manager": null,
-              "projects": [],
-              "workedTimes": [],
-              "projectsManaged": []
-          },
-          "workedTimes": []
-      },
-      "weekNumberFromStartDate": 6
+
+    this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any = [])=>{
+      console.log("data" , data);
+      this.user = data[0].user;
+      this.temps = data;
+
+      
+    this.calculertemps();
+    })
   }
-    ];
-  }
+
 }

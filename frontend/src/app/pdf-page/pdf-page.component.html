@@ -1,9 +1,12 @@
-<input type="button" value="Download PDF" class="btn btn-success" (click)="pdf()">
+<button style="margin: 1rem;" mat-raised-button color="primary" (click)="pdf()">Télécharger le pdf</button>
+<button style="margin: 1rem;" mat-raised-button color="primary" [routerLink]="['/user']">Retour</button>
+
 <div class="page" id="page">
 <img src="/assets/logo_telecom.jpg">
-<div style="width: 210mm; height: 297mm; clear: right">
+
+<div *ngIf="isDataLoaded" style="width: 210mm; height: 297mm; clear: right">
     <h1>Temps Travaillé</h1>
-    <p>User : {{user.userName}}</p>
+    <p>Nom Prénom : {{user.userName}} {{user.userLastName}}</p>
     <p>E-mail : {{user.email}}</p>
     <p>Poste : {{user.profile}}</p>
     <p>Manager : {{user.manager}}</p>
