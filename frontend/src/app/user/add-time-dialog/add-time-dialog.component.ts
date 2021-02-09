@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CalendarComponent } from 'src/app/calendar/calendar.component';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
@@ -10,20 +11,54 @@ export class AddTimeDialogComponent implements OnInit {
 
   userId = sessionStorage.getItem("Id");
   Duree: string;
-  StartingDate: string;
+  StartingDate: Date;
   ProjetId: string;
-  res = [];
+  heure: string;
+  minute: string;
+  ProjectsList: any [];
+
+  Heure: any [] = [
+    {value: '08'},
+    {value: '09'},
+    {value: '10'},
+    {value: '11'},
+    {value: '12'},
+    {value: '13'},
+    {value: '14'},
+    {value: '15'},
+    {value: '16'},
+    {value: '17'},
+    {value: '18'},
+    {value: '19'}
+  ];
+
+  Minute: any [] = [
+    {value: '00'},
+    {value: '15'},
+    {value: '30'},
+    {value: '45'}
+  ];
 
   constructor(private userService: UserServiceService) { }
 
   ngOnInit(): void {
+
+    this.userService.sendGetUserProjectsRequest(this.userId ).subscribe((data: any = [])=>{
+      console.log(data);
+      this.ProjectsList = data;
+    }) 
   }
 
   sendTime(){
-    this.userService.sendAddWorkedTimeRequest(this.userId, this.ProjetId, this.StartingDate, this.Duree).subscribe((data: any[])=>{
+
+    var StartDate = this.StartingDate.toJSON().slice(0, 11) + this.heure + ":" + this.minute + ":00";
+    console.log(StartDate);
+
+    this.userService.sendAddWorkedTimeRequest(this.userId, StartDate, this.Duree, this.ProjetId).subscribe((data: any = [])=>{
       console.log(data);
-      this.res = data;
     }) 
+
+    // reload calendar
   }
 
 }

@@ -1,9 +1,17 @@
 <div class="container login-container" fxLayout="row" fxLayoutAlign="center center">
     <form fxFlex="30%" fxFlex.sm="50%" fxFlex.xs="90%">
         <mat-card>
-            <mat-card-title>angular-material-template</mat-card-title>
-            <mat-card-subtitle>Create your account</mat-card-subtitle>
+            <mat-card-title>Projet POC</mat-card-title>
+            <mat-card-subtitle>Créer votre compte</mat-card-subtitle>
             <mat-card-content>
+
+                <mat-form-field class="full-width">
+                    <input id="PrenomInput" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" matInput placeholder="Prenom">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="NomInput" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" matInput placeholder="Nom">
+                </mat-form-field>
 
                 <mat-form-field class="full-width">
                     <input id="emailInput" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" matInput placeholder="Email" autocomplete="email" type="email">

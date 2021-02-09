@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
   email: string;
   mdp1: string;
   mdp2: string;
-  res = [];
+  nom: string;
+  prenom: string;
 
   constructor(private router: Router, private authService: AuthServiceService) { }
 
@@ -20,10 +21,11 @@ export class RegisterComponent implements OnInit {
   }
 
   createAccount() {
-    if (this.mdp1 == this.mdp2){
-      this.authService.sendRegisterRequest(this.email, this.mdp1).subscribe((data: any[])=>{
+    if (this.mdp1 == this.mdp2 ) { //&& this.mdp2.length > 0){
+      this.authService.sendRegisterRequest( this.prenom, this.nom, this.email, this.mdp1).subscribe((data: any = [])=>{
         console.log(data);
-        this.res = data;
+        alert("votre compte à été créé");
+        this.router.navigate(['/login']);
       }) 
     }
     else{

@@ -18,12 +18,6 @@ export class HomeUserComponent implements OnInit {
   constructor(private router: Router,public dialog: MatDialog, private userService: UserServiceService) {}
 
   ngOnInit(): void {
-    
-    this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any[])=>{
-      console.log(data);
-      this.res = data;
-    }) 
-
   }
 
   AddTime() {

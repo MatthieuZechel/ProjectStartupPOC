@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Configuration
 @Getter
@@ -101,7 +102,7 @@ public class PocTestConfiguration {
     }
 
     private void initWorkedTime(WorkedTimeDao workedTimeDao){
-        workedTime1 = new WorkedTime(LocalDate.now(),3L,user4,project2);
+        workedTime1 = new WorkedTime(LocalDateTime.now(),3L,user4,project2);
         workedTimeDao.save(workedTime1);
         log.info(workedTime1 + " saved to database.");
     }

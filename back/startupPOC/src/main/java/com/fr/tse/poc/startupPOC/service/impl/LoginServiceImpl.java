@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
                 .filter(user -> user.getEmail().equals(email))
                 .findFirst().get();
 
-        if(userConnected.getPassword() == password) {
+        if(userConnected.getPassword().equals(password)) {
             return userConnected;
         }
 
@@ -31,6 +31,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User createAccount(String firstName, String lastName, String email, String password) {
-        return userService.createUser(firstName, lastName, email,password,"developer",1L);
+        return userService.createUser(firstName, lastName, email,password,"developer",null);
     }
 }

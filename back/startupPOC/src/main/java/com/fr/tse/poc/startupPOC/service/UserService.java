@@ -17,7 +17,7 @@ public interface UserService {
 
     User getUser(Long userId);
 
-    User updateUser(Long userId, String userLastName, String userName, String email, String profile,Long managerId);
+    User updateUser(Long userId, String userLastName, String userName, String email, String password, String profile,Long managerId);
 
     User createUser(String userLastName, String userName, String email,String password, String profile,Long managerId);
 
