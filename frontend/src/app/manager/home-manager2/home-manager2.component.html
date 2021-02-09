@@ -4,44 +4,36 @@
 <div class="container" fxLayout="row" style="padding-top: 4rem;">
 
     <div fxFlex="20%" style="margin: 1rem;">
-        <mat-form-field class="example-full-width">
-            <mat-label>Favorite food</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="Sushi">
-          </mat-form-field>
-        
-        
-          <mat-selection-list #shoes [multiple]="false">
-            <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
-              {{shoe}}
+        <mat-label>Projets</mat-label>
+
+        <mat-selection-list #projetChoisi [multiple]="false">
+            <mat-list-option *ngFor="let projet of projets" [value]="projet.id">
+              {{projet.name}}
             </mat-list-option>
-          </mat-selection-list>
-          
-          <p>
-            Option selected: {{shoes.selectedOptions.selected[0]?.value}}
-          </p>
+        </mat-selection-list>
+
+        <p>
+            Option selected: {{projetChoisi.selectedOptions.selected[0]?.value}}
+        </p>
     </div>
 
     <div fxFlex="50%">
         <mat-card>
-            <mat-card-title>angular-material-template</mat-card-title>
-            <mat-card-subtitle>Log in to your account</mat-card-subtitle>
             <mat-card-content>
-        
+                
                 <mat-form-field class="full-width">
-                    <input id="emailInput" matInput placeholder="Email" autocomplete="email"
-                        type="email">        
+                    <input matInput id="name" placeholder="name" autocomplete="nom du projet">        
                 </mat-form-field>
         
                 <mat-form-field class="full-width">
-                    <input id="passwordInput" matInput placeholder="Password" type="password"
-                        autocomplete="current-password">
+                    <input matInput id="workLoad" placeholder="workLoad" autocomplete="charge de travail">
                 </mat-form-field>
         
             </mat-card-content>
         
             <mat-card-actions class="login-actions">
-                <button mat-button id="login"  (click)="supprimer()">Supprimer</button>
-                <button mat-raised-button color="primary" id="createAccount" (click)="sauvegarder()" type="button">Sauvegarder</button>
+                <button mat-button id="supprimer"  (click)="supprimer()">Supprimer</button>
+                <button mat-raised-button color="primary" id="sauvegarder" (click)="sauvegarder()" type="button">Sauvegarder</button>
             </mat-card-actions>
         
         </mat-card>
