@@ -8,16 +8,30 @@ import { ManagerServiceService } from 'src/app/services/manager-service.service'
 })
 export class AddProjetDialogComponent implements OnInit {
 
+
+  userId = sessionStorage.getItem("Id");
+  CompanyList: any = [];
+  nomProjet: string; 
+  workLoad: string;
+  idClient: string;
+
   constructor(private managerService: ManagerServiceService) { }
 
   ngOnInit(): void {
 
-    // get tout les entreprises
-    this.userService.sendGetUserProjectsRequest(this.userId).subscribe((data: any = [])=>{
+    this.managerService.sendGetAllCompaniesRequest().subscribe((data: any = [])=>{
       console.log(data);
-      this.ProjectsList = data;
+      this.CompanyList = data;
     })
 
+  } 
+
+  creerProjet(){
+  
+    this.managerService.sendGetCreateProjectRequest(this.nomProjet, this.workLoad, this.idClient, this.userId).subscribe((data: any = [])=>{
+      console.log(data);
+      this.CompanyList = data;
+    })
 
   }
 

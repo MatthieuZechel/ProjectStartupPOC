@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { ManagerServiceService } from 'src/app/services/manager-service.service';
+import { AddProjetDialogComponent } from '../add-projet-dialog/add-projet-dialog.component';
 
 @Component({
   selector: 'app-home-manager2',
@@ -9,7 +10,7 @@ import { ManagerServiceService } from 'src/app/services/manager-service.service'
 })
 export class HomeManager2Component implements OnInit {
 
-  constructor(private managerService: ManagerServiceService) { }
+  constructor(private managerService: ManagerServiceService, public dialog: MatDialog) { }
 
   userId = sessionStorage.getItem("Id");
   CurrentProject: any = []; 
@@ -53,6 +54,10 @@ export class HomeManager2Component implements OnInit {
   }
 
   ajouterNouveauProjet(){
-    
+    const dialogRef = this.dialog.open(AddProjetDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
