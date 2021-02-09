@@ -37,7 +37,7 @@ export class AuthServiceService {
 
   public sendRegisterRequest(prenom, nom, email, mdp){
     console.log(prenom);
-    const options = { firstName: prenom, lastName: nom, email: email, password: mdp} ;
+    const options = { userName: prenom, userLastName: nom, email: email, password: mdp} ;
     return this.httpClient.post(this.REGISTER_REQ, options);
   }
 
