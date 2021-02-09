@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CalendarComponent } from 'src/app/calendar/calendar.component';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
@@ -57,6 +58,7 @@ export class AddTimeDialogComponent implements OnInit {
       console.log(data);
     }) 
 
+    // reload calendar
   }
 
 }

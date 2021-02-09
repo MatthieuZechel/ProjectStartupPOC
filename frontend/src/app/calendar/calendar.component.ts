@@ -42,6 +42,11 @@ export class CalendarComponent  implements OnInit {
 
     this.userId = sessionStorage.getItem("Id");
     
+    this.realoadCalendar();
+
+  }
+
+  public realoadCalendar(){
     this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any = [])=>{
       console.log(data);
       this.events = []

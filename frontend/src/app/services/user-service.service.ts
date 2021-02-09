@@ -57,8 +57,8 @@ export class UserServiceService {
     return this.httpClient.post(this.GENERATEREPORT_REQ, options);
   }
 
-  public sendUpdateWorkedTimeRequest(userId, timeWorkedId, startDate, duration){
-    const options = { userId: userId, timeWorkedId: timeWorkedId, startDate: startDate, duration: duration} ;
+  public sendUpdateWorkedTimeRequest(IdTimeWorked, StartingDate, Duree, userId, ProjectId){
+    const options = { workedTimeId: IdTimeWorked,startDate: StartingDate,duree: Duree, userId: userId, projectId: ProjectId} ;
     return this.httpClient.post(this.UPDATEWORKEDTIME_REQ, options);
   }
 
