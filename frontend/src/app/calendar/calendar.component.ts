@@ -55,14 +55,10 @@ export class CalendarComponent  implements OnInit {
         // end date
         var endDate = new Date( data[i].startDate );
         endDate.setHours( endDate.getHours() + data[i].duree );
-        //this.event.end = endDate.toDateString();
-        this.event.end = "2021-02-09T12:10:38"
-
-        
+        this.event.end = endDate.toJSON();
 
         this.events.push(this.event);
         this.event = [];
-
 
         //console.log("event", this.event)
         //console.log( "events", this.events)

@@ -10,9 +10,8 @@ export class AddTimeDialogComponent implements OnInit {
 
   userId = sessionStorage.getItem("Id");
   Duree: string;
-  StartingDate: string;
+  StartingDate: Date;
   ProjetId: string;
-  res = [];
 
   constructor(private userService: UserServiceService) { }
 
@@ -20,9 +19,12 @@ export class AddTimeDialogComponent implements OnInit {
   }
 
   sendTime(){
-    this.userService.sendAddWorkedTimeRequest(this.userId, this.ProjetId, this.StartingDate, this.Duree).subscribe((data: any[])=>{
+
+    var StartDate = this.StartingDate.toJSON();
+
+    this.userService.sendAddWorkedTimeRequest(this.userId, this.ProjetId, StartDate, this.Duree).subscribe((data: any = [])=>{
       console.log(data);
-      this.res = data;
+
     }) 
   }
 

@@ -41,8 +41,8 @@ export class UserServiceService {
     return this.httpClient.get(this.GETTIMEUSER_REQ, { params: params });
   }
 
-  public sendAddWorkedTimeRequest(userId, projectId, startDate, duration){
-    const options = { userId: userId, projectId: projectId, startDate: startDate, duration: duration} ;
+  public sendAddWorkedTimeRequest(userId, startDate, duration, projectId){
+    const options = { userId: userId, startDate: startDate, duree: duration, projectId: projectId} ;
     return this.httpClient.post(this.ADDWORKEDTIME_REQ, options);
   }
 
