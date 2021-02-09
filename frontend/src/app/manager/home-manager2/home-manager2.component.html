@@ -6,15 +6,12 @@
     <div fxFlex="20%" style="margin: 1rem;">
         <mat-label>Projets</mat-label>
 
-        <mat-selection-list #projetChoisi [multiple]="false">
-            <mat-list-option *ngFor="let projet of projets" [value]="projet.id">
+        <mat-selection-list #projetChoisi  [multiple]="false" >
+            <mat-list-option *ngFor="let projet of ProjectList" [value]="projet" (click)="loadCurrentProject(projet)">
               {{projet.name}}
             </mat-list-option>
         </mat-selection-list>
 
-        <p>
-            Option selected: {{projetChoisi.selectedOptions.selected[0]?.value}}
-        </p>
     </div>
 
     <div fxFlex="50%">
@@ -22,13 +19,16 @@
             <mat-card-content>
                 
                 <mat-form-field class="full-width">
-                    <input matInput id="name" placeholder="name" autocomplete="nom du projet">        
+                    <input matInput id="name" placeholder="name" autocomplete="Nom du projet" [value]="CurrentProject.name">        
                 </mat-form-field>
         
                 <mat-form-field class="full-width">
-                    <input matInput id="workLoad" placeholder="workLoad" autocomplete="charge de travail">
+                    <input matInput id="workLoad" placeholder="workLoad" autocomplete="Charge de travail" [value]="CurrentProject.workLoad">
                 </mat-form-field>
-        
+                
+                <h2> Nom du client </h2>
+                    <p> {{CurrentClientName}} </p>
+
             </mat-card-content>
         
             <mat-card-actions class="login-actions">

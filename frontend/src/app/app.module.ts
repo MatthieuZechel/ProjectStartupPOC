@@ -33,6 +33,7 @@ import { UpdateTimeDialogComponent } from './user/update-time-dialog/update-time
 import { PdfPageComponent } from './pdf-page/pdf-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ManagerPdfComponent } from './manager/manager-pdf/manager-pdf.component';
+import { AddProjetDialogComponent } from './manager/add-projet-dialog/add-projet-dialog.component';
 
 FullCalendarModule.registerPlugins([ 
   dayGridPlugin,
@@ -55,7 +56,8 @@ FullCalendarModule.registerPlugins([
     AddTimeDialogComponent,
     UpdateTimeDialogComponent,
     PdfPageComponent,
-    ManagerPdfComponent
+    ManagerPdfComponent,
+    AddProjetDialogComponent
   ],
   imports: [
     BrowserModule,

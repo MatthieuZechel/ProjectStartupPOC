@@ -111,7 +111,7 @@ public class ManagerController {
     }
     @RequestMapping(method = RequestMethod.DELETE,path="/project")
     @ResponseStatus(HttpStatus.OK)
-    Boolean deleteProject(@RequestBody Map<String,String> json){
+    Boolean deleteProject(@RequestParam Map<String,String> json){
         Long projectId = Long.parseLong(json.get("projectId"));
 
         return projectService.deleteProject(projectId);

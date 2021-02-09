@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ManagerServiceService } from 'src/app/services/manager-service.service';
 
 @Component({
   selector: 'app-home-manager2',
@@ -7,19 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeManager2Component implements OnInit {
 
-  constructor() { }
+  constructor(private managerService: ManagerServiceService) { }
 
-  projets: any[] = [{"id":1,"name":"Projet1","workLoad":5},
-  {"id":2,"name":"Projet2","workLoad":8}];
+  userId = sessionStorage.getItem("Id");
+  CurrentProject: any = []; 
+  ProjectList: any = [];
+  CurrentClientName: string; 
+
+
 
   ngOnInit(): void {
     this.chargerProjets();
+
+    this.managerService.sendGetManagerAllProjectsRequest(this.userId).subscribe((data: any = [])=>{
+      console.log(data);
+      this.ProjectList = data;
+    })
   }
 
   chargerProjets() {
     //throw new Error('Method not implemented.');
   }
 
+  loadCurrentProject(projet){
+
+    this.CurrentProject = projet;
+    this.CurrentClientName = projet.client.name;
+
+  }
 
   sauvegarder(){
     // let name = (<HTMLInputElement>document.getElementById("name")).value;
@@ -28,6 +45,10 @@ export class HomeManager2Component implements OnInit {
   }
 
   supprimer(){
+
+    this.managerService.sendDeleteProjectRequest(this.CurrentProject.id).subscribe((data: any = [])=>{
+      console.log(data);
+    })
 
   }
 

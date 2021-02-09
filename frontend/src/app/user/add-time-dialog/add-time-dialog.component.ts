@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarComponent } from 'src/app/calendar/calendar.component';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({

@@ -12,7 +12,6 @@ export class HomeManagerComponent implements OnInit {
 
   constructor(private router: Router, private managerService: ManagerServiceService) { }
 
-  //CurrentUser = sessionStorage.getItem("CurrentUser");
   CurrentUser: any = [];
   UserList: any = [];
   userId = sessionStorage.getItem("Id");

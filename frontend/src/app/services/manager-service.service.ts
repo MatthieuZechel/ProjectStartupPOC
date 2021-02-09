@@ -12,6 +12,8 @@ export class ManagerServiceService {
 
   private GETUSERPROJECTS_REQ = "http://localhost:8080/getUserProjects";  //get (userId)
   private GETMANAGERALLUSER_REQ = "http://localhost:8080/getManagerAllUsers";  //get (managerId (userId))
+  private GETMANAGERALLPROJECTS_REQ = "http://localhost:8080/getManagerAllProjects";  //get (managerId)
+  private DELETEPROJECT_REQ = "http://localhost:8080/project";
   
 
   constructor(private httpClient: HttpClient) { }
@@ -31,7 +33,6 @@ export class ManagerServiceService {
 
     // Begin assigning parameters
     params = params.append('managerId', userId);
-    console.log("manager ID", userId)
     return this.httpClient.get(this.GETMANAGERALLUSER_REQ, { params: params });
   }
 
@@ -40,6 +41,22 @@ export class ManagerServiceService {
   //   return this.httpClient.post(this.ADDWORKEDTIME_REQ, options);
   // }
 
+  public sendGetManagerAllProjectsRequest(userId){
+    // Initialize Params Object
+    let params = new HttpParams();
 
+    // Begin assigning parameters
+    params = params.append('managerId', userId);
+    return this.httpClient.get(this.GETMANAGERALLPROJECTS_REQ, { params: params });
+  }
+
+  public sendDeleteProjectRequest(projectId){
+    // Initialize Params Object
+    let params = new HttpParams();
+
+    params = params.append('projectId', projectId);
+    console.log("projectId", projectId)
+    return this.httpClient.delete(this.DELETEPROJECT_REQ, { params: params });
+  }
 
 }
