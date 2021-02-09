@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,16 +29,19 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/getTimeUser")
     @ResponseStatus(HttpStatus.OK)
-    List<WorkedTime> getTimeUser(Long userId){
+    List<WorkedTime> getTimeUser(@RequestBody Long userId){
        return workedTimeService.getUserAllWorkedTimes(userId);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/addWorkedTime")
+    /*@RequestMapping(method = RequestMethod.POST, path = "/addWorkedTime")
     @ResponseStatus(HttpStatus.CREATED)
-    WorkedTime addWorkedTime(Long userId, LocalDate startDate, Long duree, Project project){
+    WorkedTime addWorkedTime(@RequestBody Map<String,String> json){
+        //Long userId = json.get("userId");
+        //LocalDate startDate, Long duree, Long projectId
         User userSelected = userService.getUser(userId);
-        return workedTimeService.addWorkedTime(startDate,duree,userSelected,project);
-    }
+        Project projectSelected = projectService.getProject(projectId);
+        return workedTimeService.addWorkedTime(startDate,duree,userSelected,projectSelected);
+    }*/
 
     @RequestMapping(method = RequestMethod.POST, path = "/updateWorkedTime")
     @ResponseStatus(HttpStatus.OK)
