@@ -21,8 +21,8 @@ export class AddTimeDialogComponent implements OnInit {
   sendTime(){
 
     var StartDate = this.StartingDate.toJSON();
-
-    this.userService.sendAddWorkedTimeRequest(this.userId, this.ProjetId, StartDate, this.Duree).subscribe((data: any = [])=>{
+    console.log(StartDate);
+    this.userService.sendAddWorkedTimeRequest(this.userId, StartDate, this.Duree, this.ProjetId).subscribe((data: any = [])=>{
       console.log(data);
 
     }) 

@@ -39,7 +39,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     WorkedTime addWorkedTime(@RequestBody Map<String,String> json){
         Long userId = Long.parseLong(json.get("userId"));
-        LocalDateTime startDate = LocalDateTime.parse("startDate");
+        LocalDateTime startDate = LocalDateTime.parse(json.get("startDate"));
         Long duree = Long.parseLong(json.get("duree"));
         Long projectId = Long.parseLong(json.get("projectId"));
 
