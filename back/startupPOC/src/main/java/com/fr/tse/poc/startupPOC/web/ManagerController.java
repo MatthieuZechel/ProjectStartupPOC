@@ -86,6 +86,13 @@ public class ManagerController {
         return projectService.createProject(name,workLoad,client,manager);
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/addCompany")
+    @ResponseStatus(HttpStatus.OK)
+    Company addCompany(@RequestBody Map<String,String> json){
+        String name = json.get("name");
+
+        return companyService.createCompany(name);
+    }
     @RequestMapping(method = RequestMethod.DELETE,path="/project")
     @ResponseStatus(HttpStatus.OK)
     Boolean deleteProject(@RequestBody Map<String,String> json){

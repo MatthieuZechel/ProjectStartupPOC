@@ -49,7 +49,7 @@ class UserServiceImplTest {
 
     @Test
     void shouldUpdateUser() {
-        User user = userService.updateUser(2L,"Test","if","modified","works",1L);
+        User user = userService.updateUser(2L,"Test","if","modified","1234","works",1L);
         assertNotNull(user);
         assertEquals("modified",user.getEmail());
         assertEquals(userService.getUser(2L).getUserName(),"if");
