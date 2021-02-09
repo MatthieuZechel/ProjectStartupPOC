@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/addWorkedTime")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     WorkedTime addWorkedTime(Long userId, LocalDate startDate, Long duree, Project project){
         User userSelected = userService.getUser(userId);
         return workedTimeService.addWorkedTime(startDate,duree,userSelected,project);
