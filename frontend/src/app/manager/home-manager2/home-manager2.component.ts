@@ -16,33 +16,43 @@ export class HomeManager2Component implements OnInit {
   CurrentProject: any = []; 
   ProjectList: any = [];
   CurrentClientName: string; 
-
-
+  CurrentClientId: string; 
+  name = "";
+  workLoad = "";
 
   ngOnInit(): void {
-    this.chargerProjets();
+    
+    this.reloadProjects()
+    
+  }
 
+  reloadProjects(){
+    this.ProjectList = []
     this.managerService.sendGetManagerAllProjectsRequest(this.userId).subscribe((data: any = [])=>{
       console.log(data);
       this.ProjectList = data;
     })
   }
 
-  chargerProjets() {
-    //throw new Error('Method not implemented.');
-  }
-
   loadCurrentProject(projet){
 
     this.CurrentProject = projet;
     this.CurrentClientName = projet.client.name;
+    this.CurrentClientId = projet.client.id;
 
+    this.name = this.CurrentProject.name;
+    this.workLoad = this.CurrentProject.workLoad;
+
+    this.reloadProjects()
   }
 
   sauvegarder(){
-    // let name = (<HTMLInputElement>document.getElementById("name")).value;
-    // let workLoad = (<HTMLInputElement>document.getElementById("workLoad")).value;
-    // this.projets.push({"name":name,"workLoad":workLoad});
+       
+    this.managerService.sendGetUpdateProjectRequest(this.CurrentProject.id, this.name, this.workLoad, this.CurrentClientId, this.userId).subscribe((data: any = [])=>{
+      console.log(data);
+    })
+
+    this.reloadProjects()
   }
 
   supprimer(){
@@ -50,6 +60,8 @@ export class HomeManager2Component implements OnInit {
     this.managerService.sendDeleteProjectRequest(this.CurrentProject.id).subscribe((data: any = [])=>{
       console.log(data);
     })
+    
+    this.reloadProjects()
 
   }
 
@@ -59,5 +71,8 @@ export class HomeManager2Component implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+
+    this.reloadProjects()
+
   }
 }

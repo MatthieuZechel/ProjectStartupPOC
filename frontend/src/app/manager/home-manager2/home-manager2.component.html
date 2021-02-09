@@ -4,7 +4,7 @@
 <div class="container" fxLayout="row" style="padding-top: 4rem;">
 
     <div fxFlex="20%" style="margin: 1rem;">
-        <mat-label>Projets</mat-label>
+        <h2>Projets</h2>
 
         <mat-selection-list #projetChoisi  [multiple]="false" >
             <mat-list-option *ngFor="let projet of ProjectList" [value]="projet" (click)="loadCurrentProject(projet)">
@@ -19,11 +19,11 @@
             <mat-card-content>
                 
                 <mat-form-field class="full-width">
-                    <input matInput id="name" placeholder="name" autocomplete="Nom du projet" [value]="CurrentProject.name">        
+                    <input matInput id="name" [(ngModel)]='name' placeholder="Nom" autocomplete="Nom du projet" [value]="CurrentProject.name">        
                 </mat-form-field>
         
                 <mat-form-field class="full-width">
-                    <input matInput id="workLoad" placeholder="workLoad" autocomplete="Charge de travail" [value]="CurrentProject.workLoad">
+                    <input matInput id="workLoad" [(ngModel)]='workLoad' placeholder="WorkLoad" autocomplete="Charge de travail" [value]="CurrentProject.workLoad">
                 </mat-form-field>
                 
                 <h2> Nom du client </h2>

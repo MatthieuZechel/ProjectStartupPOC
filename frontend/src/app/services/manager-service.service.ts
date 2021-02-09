@@ -16,6 +16,7 @@ export class ManagerServiceService {
   private DELETEPROJECT_REQ = "http://localhost:8080/project"; // delete
   private GETALLCOMPANIES_REQ = "http://localhost:8080/getAllCompanies"; // get
   private GETADDPROJECT_REQ = "http://localhost:8080/addProject"; // get
+  private GETUPDATEPROJECT_REQ = "http://localhost:8080/updateProject"; // get
 
 
 
@@ -73,5 +74,10 @@ export class ManagerServiceService {
     return this.httpClient.post(this.GETADDPROJECT_REQ, options);
   }
 
+
+  public sendGetUpdateProjectRequest(projectId, nomProjet, workload, idClient, idManager){
+    const options = {projectId: projectId, name: nomProjet, workload: workload, clientId: idClient, projectManagerId: idManager} ;
+    return this.httpClient.post(this.GETUPDATEPROJECT_REQ, options);
+  }
 
 }
