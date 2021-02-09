@@ -27,7 +27,7 @@ public class LoginController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path="/createAccount")
-    public User createAccount(String firstName, String lastName, String email, String password){
-        return loginService.createAccount(firstName,lastName,email,password);
+    public User createAccount(@RequestBody User credentials){
+        return loginService.createAccount(credentials.getUserName(), credentials.getUserLastName(), credentials.getEmail(),credentials.getPassword());
     }
 }

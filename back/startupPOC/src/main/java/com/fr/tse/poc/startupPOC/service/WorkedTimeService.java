@@ -1,9 +1,12 @@
 package com.fr.tse.poc.startupPOC.service;
 
+import com.fr.tse.poc.startupPOC.business.Project;
+import com.fr.tse.poc.startupPOC.business.User;
 import com.fr.tse.poc.startupPOC.business.WorkedTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
@@ -17,4 +20,11 @@ public interface WorkedTimeService {
 
     List<WorkedTime> getWorkedTimesForWeek(Integer weekNumber, Long userId);
 
+    List<WorkedTime> getUserAllWorkedTimes(Long userId);
+
+    WorkedTime addWorkedTime(LocalDate startDate, Long duree, User user, Project project);
+
+    WorkedTime updateWorkedTime(Long workedTimeId, LocalDate startDate, Long duree, User user, Project project);
+
+    WorkedTime getWorkedTime(Long workedTimeId);
 }

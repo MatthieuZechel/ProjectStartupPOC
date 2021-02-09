@@ -24,14 +24,13 @@ public class LoginServiceImpl implements LoginService {
 
         if(userConnected.getPassword().equals(password)) {
             return userConnected;
-        }else{
+        }
 
         return null;
-}
     }
 
     @Override
     public User createAccount(String firstName, String lastName, String email, String password) {
-        return userService.createUser(firstName, lastName, email,password,"developer",1L);
+        return userService.createUser(firstName, lastName, email,password,"developer",null);
     }
 }
