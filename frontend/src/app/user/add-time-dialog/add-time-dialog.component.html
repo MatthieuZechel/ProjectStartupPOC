@@ -5,12 +5,20 @@
     <input id="Projet" [(ngModel)]="ProjetId" [ngModelOptions]="{standalone: true}" matInput placeholder="Projet" type="text">
   </mat-form-field>
 
-  <mat-form-field class="full-width">
-    <input id="StartingDate" [(ngModel)]="StartingDate" [ngModelOptions]="{standalone: true}" matInput placeholder="Date de début" type="text">
-  </mat-form-field> 
+  <mat-form-field appearance="fill" class="example-form-field">
+    <mat-label>Choissisez une date</mat-label>
+    <input matInput [(ngModel)]="StartingDate" [ngModelOptions]="{standalone: true}" [matDatepicker]="datepicker">
+    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Annuler</button>
+        <button mat-raised-button color="primary" matDatepickerApply>Valider</button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
 
   <mat-form-field class="full-width">
-    <input id="Duree" [(ngModel)]="Duree" [ngModelOptions]="{standalone: true}" matInput placeholder="Duree" type="text">
+    <input id="Duree" [(ngModel)]="Duree" [ngModelOptions]="{standalone: true}" matInput placeholder="Durée en heures" type="text">
   </mat-form-field>
 
 </mat-dialog-content>

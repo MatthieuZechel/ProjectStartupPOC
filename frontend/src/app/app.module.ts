@@ -60,12 +60,11 @@ FullCalendarModule.registerPlugins([
     MaterialModule,
     HttpClientModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
   ],
   entryComponents: [
     AddTimeDialogComponent,
     UpdateTimeDialogComponent],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
