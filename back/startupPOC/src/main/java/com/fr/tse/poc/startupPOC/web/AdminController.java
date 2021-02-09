@@ -1,9 +1,6 @@
 package com.fr.tse.poc.startupPOC.web;
 
-import com.fr.tse.poc.startupPOC.business.Company;
-import com.fr.tse.poc.startupPOC.business.Project;
 import com.fr.tse.poc.startupPOC.business.User;
-import com.fr.tse.poc.startupPOC.service.impl.ProjectServiceImpl;
 import com.fr.tse.poc.startupPOC.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +14,6 @@ public class AdminController {
 
     @Autowired
     UserServiceImpl userService;
-
-    @Autowired
-    ProjectServiceImpl projectService;
 
     @RequestMapping(method = RequestMethod.POST, path = "/createUser")
     @ResponseStatus(HttpStatus.OK)
