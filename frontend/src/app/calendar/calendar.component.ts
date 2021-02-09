@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, } from '@angular/core';
 import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular';
 import {MatDialog} from '@angular/material/dialog';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { UpdateTimeDialogComponent } from '../user/update-time-dialog/update-time-dialog.component';
 import { AddTimeDialogComponent } from '../user/add-time-dialog/add-time-dialog.component';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
@@ -13,7 +14,12 @@ import { AddTimeDialogComponent } from '../user/add-time-dialog/add-time-dialog.
 
 export class CalendarComponent  implements OnInit {
 
-  //@ViewChild('calendar') calendarComponent: FullCalendarComponent;
+
+  private eventsSubscription: Subscription;
+
+  // @Input() eventsReload: Observable<void>;
+
+
   @ViewChild(UpdateTimeDialogComponent) updateDialog;
   @ViewChild(AddTimeDialogComponent) AddDialog;
 
@@ -45,13 +51,29 @@ export class CalendarComponent  implements OnInit {
 
   ngOnInit(): void {
 
-    this.userId = sessionStorage.getItem("Id");
+    //this.eventsSubscription = this.eventsReload.subscribe(() => this.reloadCalendar());
+
+
+    if(sessionStorage.getItem("profile") === ("manager")){
+      this.userId = sessionStorage.getItem("CurrentUserId")
+    }
+    else{
+      this.userId = sessionStorage.getItem("Id");
+    }
     
-    this.realoadCalendar();
+    this.reloadCalendar();
 
   }
 
-  public realoadCalendar(){
+  public reloadCalendar(){
+
+    if(sessionStorage.getItem("profile") === ("manager")){
+      this.userId = sessionStorage.getItem("CurrentUserId")
+    }
+    else{
+      this.userId = sessionStorage.getItem("Id");
+    }
+
     this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any = [])=>{
       console.log(data);
       this.events = []
@@ -69,9 +91,6 @@ export class CalendarComponent  implements OnInit {
 
         this.events.push(this.event);
         this.event = [];
-
-        //console.log("event", this.event)
-        //console.log( "events", this.events)
       }
 
       this.calendarOptions.events = this.events;
@@ -79,9 +98,8 @@ export class CalendarComponent  implements OnInit {
     })
   }
 
-  CallReload($event){
-    if($event.equals("reload"))
-    this.realoadCalendar();
-  }
+  // ngOnDestroy() {
+  //   this.eventsSubscription.unsubscribe();
+  // }
 
 }

@@ -7,20 +7,18 @@
 
         <mat-form-field style="margin: 1rem;"appearance="fill">
             <mat-label>Sélectionner utilisateur</mat-label>
-            <mat-select [(value)]="CurrentUser">
-              <mat-option *ngFor="let user of UserList" [value]="user.name">
-                {{user.name}}
+            <mat-select [(value)]="CurrentUser" >
+              <mat-option (click)="onClickUser()" *ngFor="let user of UserList" [value]="user">
+                {{user.userName}} {{user.userLastName}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-        <button  mat-raised-button color="primary" id="AddTime" (click)="AddTime()"></button>
-        <button style="margin: 1rem;" mat-raised-button color="primary" id="GeneratePDF" [routerLink]="['/pdf']" >Générer compte rendu de user XXX</button>
-        <button style="margin: 1rem;" mat-raised-button color="primary" id="AddTime" (click)="ListeUser()">ListeUser</button>
+        <button style="margin: 1rem;" mat-raised-button color="primary" id="GeneratePDF" [routerLink]="['/manager-pdf']" >Générer compte rendu <br> de {{CurrentUser.userName}} {{CurrentUser.userLastName}}</button>
         <button style="margin: 1rem;" mat-raised-button color="primary" id="GeneratePDF" [routerLink]="['/manager2']" >Gestion des projets</button>
     </div>
 
     <div fxFlex="80%">
-        <app-calendar> </app-calendar>
+        <app-calendar > </app-calendar>
     </div>
 </div>

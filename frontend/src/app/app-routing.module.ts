@@ -5,6 +5,7 @@ import { HomeAdmin2Component } from './admin/home-admin2/home-admin2.component';
 import { LoginComponent } from './login/login.component';
 import { HomeManagerComponent } from './manager/home-manager/home-manager.component';
 import { HomeManager2Component } from './manager/home-manager2/home-manager2.component';
+import { ManagerPdfComponent } from './manager/manager-pdf/manager-pdf.component';
 import { PdfPageComponent } from './pdf-page/pdf-page.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeUserComponent } from './user/home-user/home-user.component';
@@ -40,6 +41,10 @@ const routes: Routes = [{
 {
   path: 'pdf-page',
   component: PdfPageComponent
+},
+{
+  path: 'manager-pdf',
+  component: ManagerPdfComponent
 },
 {
   path: '**',

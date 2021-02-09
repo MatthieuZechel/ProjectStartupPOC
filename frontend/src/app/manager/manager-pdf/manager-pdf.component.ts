@@ -1,21 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { UserServiceService } from 'src/app/services/user-service.service';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
-import { UserServiceService } from 'src/app/services/user-service.service';
-
-export interface ProjetTableau {
-  id: string;
-  projet: string;
-  duree: string;
-}
 
 @Component({
-  selector: 'app-pdf-page',
-  templateUrl: './pdf-page.component.html',
-  styleUrls: ['./pdf-page.component.css']
+  selector: 'app-manager-pdf',
+  templateUrl: './manager-pdf.component.html',
+  styleUrls: ['./manager-pdf.component.css']
 })
-
-export class PdfPageComponent implements OnInit {
+export class ManagerPdfComponent implements OnInit {
 
   temps = [];
   tempssomme = [];
@@ -31,7 +24,7 @@ export class PdfPageComponent implements OnInit {
   constructor( private userService: UserServiceService) { }
 
   ngOnInit(): void {
-    this.userId = sessionStorage.getItem("Id");
+    this.userId = sessionStorage.getItem("CurrentUserId");
     this.generertemps();
     console.log("temps user", this.user);
   }
