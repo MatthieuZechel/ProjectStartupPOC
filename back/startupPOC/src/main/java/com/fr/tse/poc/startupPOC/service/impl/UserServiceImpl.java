@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    UserDao userDao;
 
     @Override
     public User addUser(User user) {
@@ -43,34 +43,22 @@ public class UserServiceImpl implements UserService {
         User user = getUser(userId);
         User manager = getUser(managerId);
 
-        if(user.getUserLastName() != null && userLastName==null){
-
-        }else{
+        if(!(user.getUserLastName() != null && userLastName==null)){
             user.setUserLastName(userLastName);
         }
-        if(user.getUserName() != null && userName==null){
-
-        }else {
+        if(!(user.getUserName() != null && userName==null)){
             user.setUserName(userName);
         }
-        if(user.getEmail() != null && email==null){
-
-        }else {
+        if(!(user.getEmail() != null && email==null)){
             user.setEmail(email);
         }
-        if(user.getPassword() != null && password==null){
-
-        }else{
+        if(!(user.getPassword() != null && password==null)){
             user.setPassword(password);
         }
-        if(user.getProfile() != null && profile==null){
-
-        }else {
+        if(!(user.getProfile() != null && profile==null)){
             user.setProfile(profile);
         }
-        if(user.getManager() != null && managerId==null){
-
-        }else {
+        if(!(user.getManager() != null && managerId==null)){
             user.setManager(manager);
         }
         return userDao.save(user);

@@ -5,8 +5,6 @@ import com.fr.tse.poc.startupPOC.business.User;
 import com.fr.tse.poc.startupPOC.business.WorkedTime;
 import com.fr.tse.poc.startupPOC.dao.WorkedTimeDao;
 import com.fr.tse.poc.startupPOC.service.WorkedTimeService;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -96,28 +94,20 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
     @Override
     public WorkedTime updateWorkedTime(Long workedTimeId, LocalDateTime startDate, Long duree, User user, Project project) {
         WorkedTime workedTimeSelected = getWorkedTime(workedTimeId);
-        if(workedTimeSelected.getStartDate() != null && startDate == null)
+        if(!(workedTimeSelected.getStartDate() != null && startDate == null))
         {
-
-        }else {
             workedTimeSelected.setStartDate(startDate);
         }
-        if(workedTimeSelected.getDuree() != null && duree == null)
+        if(!(workedTimeSelected.getDuree() != null && duree == null))
         {
-
-        }else {
             workedTimeSelected.setDuree(duree);
         }
-        if(workedTimeSelected.getUser() != null && user == null)
+        if(!(workedTimeSelected.getUser() != null && user == null))
         {
-
-        }else {
             workedTimeSelected.setUser(user);
         }
-        if(workedTimeSelected.getProject() != null && project == null)
+        if(!(workedTimeSelected.getProject() != null && project == null))
         {
-
-        }else {
             workedTimeSelected.setProject(project);
         }
         return workedTimeDao.save(workedTimeSelected);

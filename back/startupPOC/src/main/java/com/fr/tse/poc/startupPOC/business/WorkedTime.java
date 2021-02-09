@@ -1,14 +1,10 @@
 package com.fr.tse.poc.startupPOC.business;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalAdjuster;
-import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
 
@@ -44,8 +40,8 @@ public class WorkedTime {
 
     public Integer getWeekNumberFromStartDate(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
-        Integer weekNumber = this.startDate.get(weekFields.weekOfWeekBasedYear());
-        return weekNumber;
+        Integer tmp = this.startDate.get(weekFields.weekOfWeekBasedYear());
+        return tmp;
     }
 
 }

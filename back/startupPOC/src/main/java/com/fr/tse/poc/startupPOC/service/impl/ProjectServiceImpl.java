@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
-    private ProjectDao projectDao;
+    ProjectDao projectDao;
 
     @Override
     public Project addProject(Project project) {
@@ -47,14 +47,10 @@ public class ProjectServiceImpl implements ProjectService {
         if(project != null){
             project.setName(name);
             project.setWorkLoad(workLoad);
-            if(project.getClient() != null && client == null) {
-
-            }else{
+            if(!(project.getClient() != null && client == null)) {
                 project.setClient(client);
             }
-            if(project.getProjectManager() != null && projectManager == null){
-
-            }else {
+            if(!(project.getProjectManager() != null && projectManager == null)){
                 project.setProjectManager(projectManager);
             }
             return projectDao.save(project);
@@ -92,10 +88,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public List<Project> getManagerAllProjects(Long managerId) {
         List<Project> projects = projectDao.findAll();
-        List<Project> managerProjects  =  projects.stream()
+        return projects.stream()
                 .filter(project -> (project.getProjectManager() !=null && project.getProjectManager().getId().equals(managerId)))
                 .collect(Collectors.toList());
-        return managerProjects;
     }
 
     @Override
