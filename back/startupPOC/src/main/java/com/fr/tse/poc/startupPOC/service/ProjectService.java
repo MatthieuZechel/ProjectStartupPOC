@@ -28,5 +28,7 @@ public interface ProjectService {
 
     List<Project> getManagerAllProjects(Long managerId);
 
+    List<Project> getUserAllProjects(User user);
+
     Boolean deleteProject(Long projectId);
 }

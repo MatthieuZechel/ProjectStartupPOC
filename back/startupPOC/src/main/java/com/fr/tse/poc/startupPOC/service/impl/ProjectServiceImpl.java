@@ -94,6 +94,15 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<Project> getUserAllProjects(User user) {
+        List<Project> projects = projectDao.findAll();
+        List<Project> collect = projects.stream()
+                .filter(project -> (project !=null && project.getWorkers().contains(user)))
+                .collect(Collectors.toList());
+        return collect;
+    }
+
+    @Override
     public Boolean deleteProject(Long projectId) {
         Optional<Project> project = projectDao.findById(projectId);
         if(!project.isPresent()){

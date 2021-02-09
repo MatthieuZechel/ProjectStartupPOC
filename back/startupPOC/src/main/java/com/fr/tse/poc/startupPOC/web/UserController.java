@@ -62,4 +62,12 @@ public class UserController {
         Project projectSelected = projectService.getProject(projectId);
         return workedTimeService.updateWorkedTime(workedTimeId,startDate,duree,userSelected,projectSelected);
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/getUserProjects")
+    @ResponseStatus(HttpStatus.OK)
+    List<Project> getProjectsUser(@RequestParam Map<String,String> json){
+        Long userId = Long.parseLong(json.get("userId"));
+        User userSelected = userService.getUser(userId);
+        return projectService.getUserAllProjects(userSelected);
+    }
 }
