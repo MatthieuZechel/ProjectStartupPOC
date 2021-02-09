@@ -11,12 +11,14 @@ import { AddTimeDialogComponent } from '../add-time-dialog/add-time-dialog.compo
 
 export class HomeUserComponent implements OnInit {
 
-  userId = sessionStorage.getItem("Id");
+  userId: string; 
   res = [];
 
   constructor(public dialog: MatDialog, private userService: UserServiceService) {}
 
   ngOnInit(): void {
+    
+    this.userId = sessionStorage.getItem("Id");
     
     this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any[])=>{
       console.log(data);

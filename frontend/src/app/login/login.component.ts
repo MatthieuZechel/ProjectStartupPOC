@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 
       sessionStorage.setItem("Prenom", res.userName)
       sessionStorage.setItem("Nom", res.userLastName)
+      sessionStorage.setItem("Profile", res.profile)
       sessionStorage.setItem("Id", res.id)
 
 

@@ -13,7 +13,7 @@ export class AuthServiceService {
   private REST_API_SERVER = "https://reqres.in/api/users/2";
 
   private LOGIN_REQ = "http://localhost:8080/connexion";  //(email, mdp)
-  private REGISTER_REQ = "http://localhost:8080/createAccount"; //(email, mdp)
+  private REGISTER_REQ = "http://localhost:8080/createAccount"; //(firstName: prenom, lastName: nom, email: email, password: mdp)
 
   constructor(private httpClient: HttpClient) { }
 
@@ -35,15 +35,16 @@ export class AuthServiceService {
     return this.httpClient.post(this.LOGIN_REQ, options);
   } 
 
-  public sendRegisterRequest(email, mdp){
-    const options = { Email: email, Password: mdp} ;
+  public sendRegisterRequest(prenom, nom, email, mdp){
+    console.log(prenom);
+    const options = { firstName: prenom, lastName: nom, email: email, password: mdp} ;
     return this.httpClient.post(this.REGISTER_REQ, options);
   }
 
 
   // test ping
   public sendPingRequest(){
-    return this.httpClient.get("http://localhost:8080/ping");//.pipe(catchError(this.handleError));
+    return this.httpClient.get("http://localhost:8080/ping");
   }
 
 

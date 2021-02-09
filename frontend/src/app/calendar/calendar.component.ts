@@ -13,6 +13,10 @@ export class CalendarComponent  implements OnInit {
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
 
+  event = {
+    
+  }
+
   constructor(public dialog: MatDialog, private userService: UserServiceService) { }
 
   calendarOptions: CalendarOptions = {
