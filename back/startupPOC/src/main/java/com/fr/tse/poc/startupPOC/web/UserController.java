@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -65,9 +67,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/getUserProjects")
     @ResponseStatus(HttpStatus.OK)
-    List<Project> getProjectsUser(@RequestParam Map<String,String> json){
+    List<Project> getUserProjects(@RequestParam Map<String,String> json){
         Long userId = Long.parseLong(json.get("userId"));
-        User userSelected = userService.getUser(userId);
-        return projectService.getUserAllProjects(userSelected);
+        List<WorkedTime> allWT =  workedTimeService.getUserAllWorkedTimes(userId);
+        return allWT.stream().map(WorkedTime::getProject).distinct().collect(Collectors.toList());
     }
 }
