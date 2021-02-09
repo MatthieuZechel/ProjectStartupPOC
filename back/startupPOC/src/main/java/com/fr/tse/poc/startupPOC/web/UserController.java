@@ -37,7 +37,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/addWorkedTime")
     @ResponseStatus(HttpStatus.CREATED)
-    WorkedTime addWorkedTime(@RequestBody Map<String,String> json){
+    WorkedTime addWorkedTime(@RequestParam Map<String,String> json){
         Long userId = Long.parseLong(json.get("userId"));
         LocalDateTime startDate = LocalDateTime.parse("startDate");
         Long duree = Long.parseLong(json.get("duree"));
@@ -50,7 +50,13 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/updateWorkedTime")
     @ResponseStatus(HttpStatus.OK)
-    WorkedTime updateWorkedTime(Long workedTimeId, LocalDateTime startDate, Long duree, Long userId, Long projectId){
+    WorkedTime updateWorkedTime(@RequestParam Map<String,String> json){
+        Long workedTimeId = Long.parseLong(json.get("workedTimeId"));
+        LocalDateTime startDate = LocalDateTime.parse(json.get("startDate"));
+        Long duree = Long.parseLong(json.get("duree"));
+        Long userId = Long.parseLong(json.get("userId"));
+        Long projectId = Long.parseLong(json.get("projectId"));
+
         User userSelected = userService.getUser(userId);
         WorkedTime workedTimeSelected = workedTimeService.getWorkedTime(workedTimeId);
         Project projectSelected = projectService.getProject(projectId);
