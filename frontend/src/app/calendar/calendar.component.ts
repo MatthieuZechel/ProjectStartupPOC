@@ -13,9 +13,8 @@ export class CalendarComponent  implements OnInit {
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
 
-  event = {
-    
-  }
+  event = { }
+  events = [];
 
   constructor(public dialog: MatDialog, private userService: UserServiceService) { }
 
@@ -32,10 +31,6 @@ export class CalendarComponent  implements OnInit {
       { title: 'Soutenance', start: '2021-02-08T08:30:00', end: '2021-02-08T09:30:00'}
     ]
   };
-
-  // handleDateClick(arg) {
-  //   alert('date click! ' + arg.dateStr)
-  // };
 
   handleEventClick(arg) {
     console.log(arg)
