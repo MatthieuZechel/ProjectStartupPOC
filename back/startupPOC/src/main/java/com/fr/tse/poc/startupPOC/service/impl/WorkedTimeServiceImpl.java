@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -45,8 +42,8 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
     @Transactional(readOnly = true)
     public Long getTimeUserForMonth(Long userId, Integer month) {
 
-        LocalDate firstDayOfMonth = getFirstDayOfMonth(month);
-        LocalDate lastDayOMonth = getLastDayOfMonth(month);
+        LocalDateTime firstDayOfMonth = getFirstDayOfMonth(month);
+        LocalDateTime lastDayOMonth = getLastDayOfMonth(month);
         Optional<Long> hoursWorked;
 
 
@@ -72,8 +69,8 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
     @Transactional(readOnly = true)
     public List<WorkedTime> getWorkedTimesForWeek(Integer weekNumber, Long userId) {
 
-        LocalDate firstDayOfSelectedWeek = getFirstDayOfWeek(weekNumber);
-        LocalDate lastDayOfSelectedWeek = getLastDayOfWeek(weekNumber);
+        LocalDateTime firstDayOfSelectedWeek = getFirstDayOfWeek(weekNumber);
+        LocalDateTime lastDayOfSelectedWeek = getLastDayOfWeek(weekNumber);
 
         return workedTimes.stream()
                 .filter(workedTime -> (workedTime !=null && workedTime.getUser().getId().equals(userId)))
@@ -90,13 +87,13 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
     }
 
     @Override
-    public WorkedTime addWorkedTime(LocalDate startDate, Long duree, User user, Project project) {
+    public WorkedTime addWorkedTime(LocalDateTime startDate, Long duree, User user, Project project) {
         WorkedTime workedTime = new WorkedTime(startDate,duree,user,project);
         return workedTimeDao.save(workedTime);
     }
 
     @Override
-    public WorkedTime updateWorkedTime(Long workedTimeId, LocalDate startDate, Long duree, User user, Project project) {
+    public WorkedTime updateWorkedTime(Long workedTimeId, LocalDateTime startDate, Long duree, User user, Project project) {
         WorkedTime workedTimeSelected = getWorkedTime(workedTimeId);
         if(workedTimeSelected.getStartDate() != null && startDate == null)
         {
@@ -134,30 +131,30 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
         return null;
     }
 
-    private LocalDate getFirstDayOfWeek(int weekNumber){
+    private LocalDateTime getFirstDayOfWeek(int weekNumber){
         calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
         calendar.set(Calendar.YEAR, year);
-        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
-    private LocalDate getLastDayOfWeek(int weekNumber){
+    private LocalDateTime getLastDayOfWeek(int weekNumber){
         calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
         calendar.set(Calendar.YEAR, year);
         calendar.add(Calendar.DATE, 6);
-        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
-    private LocalDate getFirstDayOfMonth(int monthNumber){
+    private LocalDateTime getFirstDayOfMonth(int monthNumber){
         calendar.set(Calendar.MONTH, monthNumber);
         calendar.set(Calendar.YEAR, year);
-        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
-    private LocalDate getLastDayOfMonth(int monthNumber){
+    private LocalDateTime getLastDayOfMonth(int monthNumber){
         calendar.set(Calendar.MONTH, monthNumber);
         calendar.set(Calendar.YEAR, year);
         int lastDay = calendar.getInstance().getActualMaximum(calendar.DAY_OF_MONTH);
         calendar.set(Calendar.DAY_OF_MONTH,lastDay);
-        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        return (calendar.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 }

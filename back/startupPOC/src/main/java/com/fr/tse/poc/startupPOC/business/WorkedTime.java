@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
@@ -19,7 +20,7 @@ public class WorkedTime {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     private Long duree;
 
@@ -33,7 +34,7 @@ public class WorkedTime {
 
     public WorkedTime(){}
 
-    public WorkedTime(LocalDate startDate,Long duree,User user, Project project) {
+    public WorkedTime(LocalDateTime startDate,Long duree,User user, Project project) {
         this.startDate = startDate;
         this.duree = duree;
         this.weekNumber = getWeekNumberFromStartDate();

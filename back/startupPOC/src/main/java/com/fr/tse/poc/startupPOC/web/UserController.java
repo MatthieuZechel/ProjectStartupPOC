@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     WorkedTime addWorkedTime(@RequestBody Map<String,String> json){
         Long userId = Long.parseLong(json.get("userId"));
-        LocalDate startDate = LocalDate.parse("startDate");
+        LocalDateTime startDate = LocalDateTime.parse("startDate");
         Long duree = Long.parseLong(json.get("duree"));
         Long projectId = Long.parseLong(json.get("projectId"));
 
@@ -48,7 +49,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/updateWorkedTime")
     @ResponseStatus(HttpStatus.OK)
-    WorkedTime updateWorkedTime(Long workedTimeId, LocalDate startDate, Long duree,Long userId, Long projectId){
+    WorkedTime updateWorkedTime(Long workedTimeId, LocalDateTime startDate, Long duree, Long userId, Long projectId){
         User userSelected = userService.getUser(userId);
         WorkedTime workedTimeSelected = workedTimeService.getWorkedTime(workedTimeId);
         Project projectSelected = projectService.getProject(projectId);

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public interface WorkedTimeService {
 
     List<WorkedTime> getUserAllWorkedTimes(Long userId);
 
-    WorkedTime addWorkedTime(LocalDate startDate, Long duree, User user, Project project);
+    WorkedTime addWorkedTime(LocalDateTime startDate, Long duree, User user, Project project);
 
-    WorkedTime updateWorkedTime(Long workedTimeId, LocalDate startDate, Long duree, User user, Project project);
+    WorkedTime updateWorkedTime(Long workedTimeId, LocalDateTime startDate, Long duree, User user, Project project);
 
     WorkedTime getWorkedTime(Long workedTimeId);
 }
