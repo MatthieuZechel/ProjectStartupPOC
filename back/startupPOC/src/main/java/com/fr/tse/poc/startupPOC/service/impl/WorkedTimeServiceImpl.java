@@ -6,6 +6,7 @@ import com.fr.tse.poc.startupPOC.business.WorkedTime;
 import com.fr.tse.poc.startupPOC.dao.WorkedTimeDao;
 import com.fr.tse.poc.startupPOC.service.WorkedTimeService;
 import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +33,7 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
 
     private  List<WorkedTime> workedTimes;
 
-    @Before("getTimeUserForMonth")
+    @BeforeEach
     void initList(){
         workedTimes = this.workedTimeDao.findAll();
     }
@@ -82,7 +83,7 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
     @Override
     public List<WorkedTime> getUserAllWorkedTimes(Long userId) {
         return workedTimes.stream()
-                .filter( workedTime -> (workedTime !=null && workedTime.getUser().getId().equals(userId)))
+                .filter( workedTime -> (workedTime.getUser().getId().equals(userId)))
                 .collect(Collectors.toList());
     }
 

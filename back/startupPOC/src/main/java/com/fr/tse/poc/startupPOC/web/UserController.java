@@ -30,7 +30,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/getTimeUser")
     @ResponseStatus(HttpStatus.OK)
-    List<WorkedTime> getTimeUser(@RequestBody Long userId){
+    List<WorkedTime> getTimeUser(@RequestBody Map<String,String> json){
+        Long userId = Long.parseLong(json.get("userId"));
        return workedTimeService.getUserAllWorkedTimes(userId);
     }
 

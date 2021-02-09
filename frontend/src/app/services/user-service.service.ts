@@ -33,12 +33,12 @@ export class UserServiceService {
   }
 
   public sendGetTimeUserRequest(userId){
-    const options = {Id: userId} ;
+    const options = {userId: userId} ;
     return this.httpClient.post(this.GETTIMEUSER_REQ, options).pipe(catchError(this.handleError));
   }
 
   public sendAddWorkedTimeRequest(userId, projectId, startDate, duration){
-    const options = { Id: userId, projectId: projectId, startDate: startDate, duration: duration} ;
+    const options = { userId: userId, projectId: projectId, startDate: startDate, duration: duration} ;
     return this.httpClient.post(this.ADDWORKEDTIME_REQ, options).pipe(catchError(this.handleError));
   }
 
@@ -48,12 +48,12 @@ export class UserServiceService {
   }
 
   public sendGetReportRequest(userId,month){
-    const options = { Id: userId, month: month} ;
+    const options = { userId: userId, month: month} ;
     return this.httpClient.post(this.GENERATEREPORT_REQ, options).pipe(catchError(this.handleError));
   }
 
   public sendUpdateWorkedTimeRequest(userId, timeWorkedId, startDate, duration){
-    const options = { Id: userId, timeWorkedId: timeWorkedId, startDate: startDate, duration: duration} ;
+    const options = { userId: userId, timeWorkedId: timeWorkedId, startDate: startDate, duration: duration} ;
     return this.httpClient.post(this.UPDATEWORKEDTIME_REQ, options).pipe(catchError(this.handleError));
   }
 

@@ -13,6 +13,7 @@ export class CalendarComponent  implements OnInit {
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
 
+  userId: string;
   event = { }
   events = [];
 
@@ -44,6 +45,14 @@ export class CalendarComponent  implements OnInit {
   };
 
   ngOnInit(): void {
+
+        
+    this.userId = sessionStorage.getItem("Id");
+    
+    this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any = [])=>{
+      console.log(data);
+      
+    })
     
   }
 
