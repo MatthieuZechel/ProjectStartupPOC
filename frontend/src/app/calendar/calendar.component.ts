@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular';
 import {MatDialog} from '@angular/material/dialog';
 import { UserServiceService } from 'src/app/services/user-service.service';
@@ -9,13 +9,14 @@ import { UpdateTimeDialogComponent } from '../user/update-time-dialog/update-tim
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
+
 export class CalendarComponent  implements OnInit {
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
 
+  event: any = {}
+  events: any = []
   userId: string;
-  event = { }
-  events = [];
 
   constructor(public dialog: MatDialog, private userService: UserServiceService) { }
 
@@ -23,14 +24,7 @@ export class CalendarComponent  implements OnInit {
     initialView: 'timeGridWeek',
     //dateClick: this.handleDateClick.bind(this), // bind is important!
     eventClick: this.handleEventClick.bind(this), // bind is important!
-    height: '80vh',
-    events: [
-      { title: 'event 1', date: '2021-02-08' },
-      { title: 'event 2', date: '2021-02-10' },
-      { title: 'Soutenance', start: '2021-02-08T10:30:00', end: '2021-02-08T11:30:00'},
-      { title: 'Soutenance', start: '2021-02-08T16:30:00', end: '2021-02-08T18:30:00'},
-      { title: 'Soutenance', start: '2021-02-08T08:30:00', end: '2021-02-08T09:30:00'}
-    ]
+    height: '80vh'
   };
 
   handleEventClick(arg) {
@@ -46,14 +40,37 @@ export class CalendarComponent  implements OnInit {
 
   ngOnInit(): void {
 
-        
     this.userId = sessionStorage.getItem("Id");
     
     this.userService.sendGetTimeUserRequest(this.userId).subscribe((data: any = [])=>{
       console.log(data);
+      this.events = []
       
+      for (let i = 0; i < data.length ; i++) {
+        
+        this.event.title = data[i].project.name;
+        this.event.id = data[i].id;
+        this.event.start = data[i].startDate;
+
+        // end date
+        var endDate = new Date( data[i].startDate );
+        endDate.setHours( endDate.getHours() + data[i].duree );
+        //this.event.end = endDate.toDateString();
+        this.event.end = "2021-02-09T12:10:38"
+
+        
+
+        this.events.push(this.event);
+        this.event = [];
+
+
+        //console.log("event", this.event)
+        //console.log( "events", this.events)
+      }
+
+      this.calendarOptions.events = this.events;
+
     })
-    
   }
 
 }

@@ -38,7 +38,6 @@ export class UserServiceService {
 
     // Begin assigning parameters
     params = params.append('userId', userId);
-
     return this.httpClient.get(this.GETTIMEUSER_REQ, { params: params });
   }
 
