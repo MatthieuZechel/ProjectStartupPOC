@@ -9,16 +9,15 @@ export class HomeManagerComponent implements OnInit {
 
   constructor() { }
 
+  CurrentUser: string;
+  UserList: any = [];
+
   ngOnInit(): void {
   }
 
 
   AddTime(){
 
-  }
-
-  GeneratePDFUser(){
-    
   }
 
   ListeUser(){
