@@ -33,15 +33,18 @@ public class UserController {
        return workedTimeService.getUserAllWorkedTimes(userId);
     }
 
-    /*@RequestMapping(method = RequestMethod.POST, path = "/addWorkedTime")
+    @RequestMapping(method = RequestMethod.POST, path = "/addWorkedTime")
     @ResponseStatus(HttpStatus.CREATED)
     WorkedTime addWorkedTime(@RequestBody Map<String,String> json){
-        //Long userId = json.get("userId");
-        //LocalDate startDate, Long duree, Long projectId
+        Long userId = Long.parseLong(json.get("userId"));
+        LocalDate startDate = LocalDate.parse("startDate");
+        Long duree = Long.parseLong(json.get("duree"));
+        Long projectId = Long.parseLong(json.get("projectId"));
+
         User userSelected = userService.getUser(userId);
         Project projectSelected = projectService.getProject(projectId);
         return workedTimeService.addWorkedTime(startDate,duree,userSelected,projectSelected);
-    }*/
+    }
 
     @RequestMapping(method = RequestMethod.POST, path = "/updateWorkedTime")
     @ResponseStatus(HttpStatus.OK)
