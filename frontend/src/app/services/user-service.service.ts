@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient,HttpParams,  HttpErrorResponse} from '@angular/common/http';
 
 import {  throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -33,28 +33,33 @@ export class UserServiceService {
   }
 
   public sendGetTimeUserRequest(userId){
-    const options = {userId: userId} ;
-    return this.httpClient.post(this.GETTIMEUSER_REQ, options).pipe(catchError(this.handleError));
+    // Initialize Params Object
+    let params = new HttpParams();
+
+    // Begin assigning parameters
+    params = params.append('userId', userId);
+
+    return this.httpClient.get(this.GETTIMEUSER_REQ, { params: params });
   }
 
   public sendAddWorkedTimeRequest(userId, projectId, startDate, duration){
     const options = { userId: userId, projectId: projectId, startDate: startDate, duration: duration} ;
-    return this.httpClient.post(this.ADDWORKEDTIME_REQ, options).pipe(catchError(this.handleError));
+    return this.httpClient.post(this.ADDWORKEDTIME_REQ, options);
   }
 
   public sendGetWorkedTimeForWeekRequest(weekNumber, userId){
     const options = { weekNumber: weekNumber, Id: userId} ;
-    return this.httpClient.post(this.GETWORKEDTIMESFORWEEK_REQ, options).pipe(catchError(this.handleError));
+    return this.httpClient.post(this.GETWORKEDTIMESFORWEEK_REQ, options);
   }
 
   public sendGetReportRequest(userId,month){
     const options = { userId: userId, month: month} ;
-    return this.httpClient.post(this.GENERATEREPORT_REQ, options).pipe(catchError(this.handleError));
+    return this.httpClient.post(this.GENERATEREPORT_REQ, options);
   }
 
   public sendUpdateWorkedTimeRequest(userId, timeWorkedId, startDate, duration){
     const options = { userId: userId, timeWorkedId: timeWorkedId, startDate: startDate, duration: duration} ;
-    return this.httpClient.post(this.UPDATEWORKEDTIME_REQ, options).pipe(catchError(this.handleError));
+    return this.httpClient.post(this.UPDATEWORKEDTIME_REQ, options);
   }
 
 }
