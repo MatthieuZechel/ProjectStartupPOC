@@ -38,12 +38,19 @@ public class ManagerController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/updateUserManager")
+    @RequestMapping(method = RequestMethod.GET, path = "/getManagerAllProjects")
     @ResponseStatus(HttpStatus.OK)
     List<Project> getManagerAllProjects(@RequestParam Map<String,String> json){
         Long managerId = Long.parseLong(json.get("managerId"));
 
         return projectService.getManagerAllProjects(managerId);
+
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/getAllProjects")
+    @ResponseStatus(HttpStatus.OK)
+    List<Project> getAllProjects(){
+        return projectService.getAllProjects();
 
     }
 

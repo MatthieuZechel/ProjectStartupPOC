@@ -25,6 +25,7 @@ export class CalendarComponent  implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserServiceService) { }
 
   calendarOptions: CalendarOptions = {
+    timeZone: 'local',
     initialView: 'timeGridWeek',
     //dateClick: this.handleDateClick.bind(this), // bind is important!
     eventClick: this.handleEventClick.bind(this), // bind is important!
