@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Inject } from '@angular/core';
@@ -9,6 +9,8 @@ import { Inject } from '@angular/core';
   styleUrls: ['./update-time-dialog.component.css']
 })
 export class UpdateTimeDialogComponent implements OnInit {
+
+  @Output() messageEvent = new EventEmitter<string>();
 
   Heure: any [] = [
     {value: '08'},
@@ -71,6 +73,12 @@ export class UpdateTimeDialogComponent implements OnInit {
       console.log(data);
 
     }) 
+  } 
+
+
+  SendReload(){
+    this.messageEvent.emit("reload");
   }
+
 
 }

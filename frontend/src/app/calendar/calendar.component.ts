@@ -3,6 +3,7 @@ import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular';
 import {MatDialog} from '@angular/material/dialog';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { UpdateTimeDialogComponent } from '../user/update-time-dialog/update-time-dialog.component';
+import { AddTimeDialogComponent } from '../user/add-time-dialog/add-time-dialog.component';
 
 @Component({
   selector: 'app-calendar',
@@ -12,10 +13,13 @@ import { UpdateTimeDialogComponent } from '../user/update-time-dialog/update-tim
 
 export class CalendarComponent  implements OnInit {
 
-  @ViewChild('calendar') calendarComponent: FullCalendarComponent;
+  //@ViewChild('calendar') calendarComponent: FullCalendarComponent;
+  @ViewChild(UpdateTimeDialogComponent) updateDialog;
+  @ViewChild(AddTimeDialogComponent) AddDialog;
 
   event: any = {}
   events: any = []
+  message:string;
   userId: string;
 
   constructor(public dialog: MatDialog, private userService: UserServiceService) { }
@@ -72,6 +76,11 @@ export class CalendarComponent  implements OnInit {
       this.calendarOptions.events = this.events;
 
     })
+  }
+
+  CallReload($event){
+    if($event.equals("reload"))
+    this.realoadCalendar();
   }
 
 }
