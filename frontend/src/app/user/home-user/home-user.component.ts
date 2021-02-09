@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { AddTimeDialogComponent } from '../add-time-dialog/add-time-dialog.component';
 
@@ -14,7 +15,7 @@ export class HomeUserComponent implements OnInit {
   userId = sessionStorage.getItem("Id");
   res = [];
 
-  constructor(public dialog: MatDialog, private userService: UserServiceService) {}
+  constructor(private router: Router,public dialog: MatDialog, private userService: UserServiceService) {}
 
   ngOnInit(): void {
     
@@ -34,6 +35,6 @@ export class HomeUserComponent implements OnInit {
   }
 
   GeneratePDF(){
-    // a voir comment on fait
+    this.router.navigate(['/pdf-page']);
   }
 }

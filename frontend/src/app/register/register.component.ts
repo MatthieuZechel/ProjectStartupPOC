@@ -34,5 +34,4 @@ export class RegisterComponent implements OnInit {
   backToLogin() {
     this.router.navigate(['/login']);
   }
-
 }

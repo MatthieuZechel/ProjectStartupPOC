@@ -30,6 +30,7 @@ import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { HomeAdmin2Component } from './admin/home-admin2/home-admin2.component';
 import { AddTimeDialogComponent } from './user/add-time-dialog/add-time-dialog.component';
 import { UpdateTimeDialogComponent } from './user/update-time-dialog/update-time-dialog.component';
+import { PdfPageComponent } from './pdf-page/pdf-page.component';
 
 FullCalendarModule.registerPlugins([ 
   dayGridPlugin,
@@ -50,7 +51,8 @@ FullCalendarModule.registerPlugins([
     HomeAdminComponent,
     HomeAdmin2Component,
     AddTimeDialogComponent,
-    UpdateTimeDialogComponent
+    UpdateTimeDialogComponent,
+    PdfPageComponent
   ],
   imports: [
     BrowserModule,
