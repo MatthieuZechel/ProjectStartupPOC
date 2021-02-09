@@ -95,6 +95,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getManagerAllUsers(Long managerId) {
-        return getAllUsers().stream().filter(user -> user.getManager().getId().equals(managerId)).collect(Collectors.toList());
+        return getAllUsers().stream().filter(user -> (user.getManager() != null && user.getManager().getId().equals(managerId))).collect(Collectors.toList());
     }
 }
