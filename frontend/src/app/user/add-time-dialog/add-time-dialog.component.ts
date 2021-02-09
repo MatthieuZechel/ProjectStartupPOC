@@ -43,7 +43,7 @@ export class AddTimeDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userService.sendGetAllProjectsRequest().subscribe((data: any = [])=>{
+    this.userService.sendGetUserProjectsRequest(this.userId).subscribe((data: any = [])=>{
       console.log(data);
       this.ProjectsList = data;
     })

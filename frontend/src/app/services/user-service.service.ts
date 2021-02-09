@@ -18,7 +18,6 @@ export class UserServiceService {
   private GETUSERPROJECTS_REQ = "http://localhost:8080/getUserProjects";  //post (userId, timeWorkedId, startDate, duration)
   private GETALLPROJECTS_REQ = "http://localhost:8080/getAllProjects";  //get 
 
-
   constructor(private httpClient: HttpClient) { }
 
   handleError(error: HttpErrorResponse) {

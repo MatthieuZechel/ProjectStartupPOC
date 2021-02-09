@@ -31,6 +31,7 @@ import { HomeAdmin2Component } from './admin/home-admin2/home-admin2.component';
 import { AddTimeDialogComponent } from './user/add-time-dialog/add-time-dialog.component';
 import { UpdateTimeDialogComponent } from './user/update-time-dialog/update-time-dialog.component';
 import { PdfPageComponent } from './pdf-page/pdf-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 FullCalendarModule.registerPlugins([ 
   dayGridPlugin,
@@ -62,7 +63,8 @@ FullCalendarModule.registerPlugins([
     MaterialModule,
     HttpClientModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     AddTimeDialogComponent,
