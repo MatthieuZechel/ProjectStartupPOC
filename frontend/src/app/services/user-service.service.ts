@@ -15,6 +15,7 @@ export class UserServiceService {
   private GETWORKEDTIMESFORWEEK_REQ = "http://localhost:8080/getWorkedTimesForWeek";  //get (weekNumber, userId)
   private GENERATEREPORT_REQ = "http://localhost:8080/generateReport"; // get (userId,month)
   private UPDATEWORKEDTIME_REQ = "http://localhost:8080/updateWorkedTime";  //post (userId, timeWorkedId, startDate, duration)
+  private GETUSERPROJECTS_REQ = "http://localhost:8080/getUserProjects";  //post (userId, timeWorkedId, startDate, duration)
 
 
   constructor(private httpClient: HttpClient) { }
@@ -60,5 +61,15 @@ export class UserServiceService {
     const options = { userId: userId, timeWorkedId: timeWorkedId, startDate: startDate, duration: duration} ;
     return this.httpClient.post(this.UPDATEWORKEDTIME_REQ, options);
   }
+
+  public sendGetUserProjectsRequest(userId){
+    // Initialize Params Object
+    let params = new HttpParams();
+
+    // Begin assigning parameters
+    params = params.append('userId', userId);
+    return this.httpClient.get(this.GETUSERPROJECTS_REQ, { params: params });
+  }
+  
 
 }

@@ -60,7 +60,7 @@ FullCalendarModule.registerPlugins([
     MaterialModule,
     HttpClientModule,
     FlexLayoutModule,
-    FormsModule,
+    FormsModule
   ],
   entryComponents: [
     AddTimeDialogComponent,

@@ -2,7 +2,16 @@
 <mat-dialog-content class="mat-typography">
 
   <mat-form-field class="full-width">
-    <input id="Projet" [(ngModel)]="ProjetId" [ngModelOptions]="{standalone: true}" matInput placeholder="Projet" type="text">
+    <input id="Projet" [(ngModel)]="ProjetId" [ngModelOptions]="{standalone: true}" matInput placeholder="A REMOVED" type="text">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Projet</mat-label>
+    <mat-select [(value)]="ProjetId">
+      <mat-option *ngFor="let project of ProjectsList" [value]="project.Id">
+        {{project.nom}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="example-form-field">
@@ -15,6 +24,24 @@
         <button mat-raised-button color="primary" matDatepickerApply>Valider</button>
       </mat-datepicker-actions>
     </mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Heure</mat-label>
+    <mat-select [(value)]="heure">
+      <mat-option *ngFor="let heure of Heure" [value]="heure.value">
+        {{heure.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Minute</mat-label>
+    <mat-select [(value)]="minute" >
+      <mat-option *ngFor="let minute of Minute" [value]="minute.value">
+        {{minute.value}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field class="full-width">
