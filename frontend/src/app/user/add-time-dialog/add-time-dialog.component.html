@@ -1,15 +1,11 @@
 <h2 mat-dialog-title>Ajouter du temps</h2>
 <mat-dialog-content class="mat-typography">
 
-  <mat-form-field class="full-width">
-    <input id="Projet" [(ngModel)]="ProjetId" [ngModelOptions]="{standalone: true}" matInput placeholder="A REMOVED" type="text">
-  </mat-form-field>
-
   <mat-form-field appearance="fill">
     <mat-label>Projet</mat-label>
     <mat-select [(value)]="ProjetId">
-      <mat-option *ngFor="let project of ProjectsList" [value]="project.Id">
-        {{project.nom}}
+      <mat-option *ngFor="let project of ProjectsList" [value]="project.id">
+        {{project.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>

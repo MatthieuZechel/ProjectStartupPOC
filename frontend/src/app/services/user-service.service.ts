@@ -16,6 +16,7 @@ export class UserServiceService {
   private GENERATEREPORT_REQ = "http://localhost:8080/generateReport"; // get (userId,month)
   private UPDATEWORKEDTIME_REQ = "http://localhost:8080/updateWorkedTime";  //post (userId, timeWorkedId, startDate, duration)
   private GETUSERPROJECTS_REQ = "http://localhost:8080/getUserProjects";  //post (userId, timeWorkedId, startDate, duration)
+  private GETALLPROJECTS_REQ = "http://localhost:8080/getAllProjects";  //get 
 
 
   constructor(private httpClient: HttpClient) { }
@@ -69,6 +70,10 @@ export class UserServiceService {
     // Begin assigning parameters
     params = params.append('userId', userId);
     return this.httpClient.get(this.GETUSERPROJECTS_REQ, { params: params });
+  }
+
+  public sendGetAllProjectsRequest(){
+    return this.httpClient.get(this.GETALLPROJECTS_REQ);
   }
   
 
