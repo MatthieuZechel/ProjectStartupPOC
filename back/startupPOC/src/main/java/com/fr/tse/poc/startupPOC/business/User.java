@@ -27,13 +27,23 @@ public class User {
     @OneToOne
     private User manager;
 
-    @ManyToMany
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "user_projects",
+                joinColumns = {
+                    @JoinColumn(name="user_id",referencedColumnName = "id")
+                },
+                inverseJoinColumns = {
+                    @JoinColumn(name="projects_id",referencedColumnName = "id")
+                })
     private List<Project> projects;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<WorkedTime> workedTimes;
 
-    @OneToMany
+    @OneToMany(mappedBy = "projectManager")
     private List<Project> projectsManaged;
 
 

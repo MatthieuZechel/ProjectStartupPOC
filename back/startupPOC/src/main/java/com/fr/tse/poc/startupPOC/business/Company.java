@@ -14,7 +14,7 @@ public class Company {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "client")
     private List<Project> projects;
 
     private String name;

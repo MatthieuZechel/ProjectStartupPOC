@@ -4,6 +4,7 @@ import com.fr.tse.poc.startupPOC.business.Project;
 import com.fr.tse.poc.startupPOC.business.User;
 import com.fr.tse.poc.startupPOC.business.WorkedTime;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;

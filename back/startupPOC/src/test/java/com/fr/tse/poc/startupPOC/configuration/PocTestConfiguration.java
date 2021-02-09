@@ -73,8 +73,10 @@ public class PocTestConfiguration {
         log.info(user2 + " saved to database.");
         userDao.save(user3);
         log.info(user3 + " saved to database.");
+        user4.setManager(user1);
         userDao.save(user4);
         log.info(user4 + " saved to database.");
+        user5.setManager(user2);
         userDao.save(user5);
         log.info(user5 + " saved to database.");
     }

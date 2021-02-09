@@ -5,6 +5,7 @@ import com.fr.tse.poc.startupPOC.dao.UserDao;
 import com.fr.tse.poc.startupPOC.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public User updateUser(Long userId, String userLastName, String userName, String email,String password, String profile, Long managerId) {
         User user = getUser(userId);
         User manager = getUser(managerId);
@@ -65,12 +67,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public User createUser(String userLastName, String userName, String email,String password, String profile, Long managerId) {
         User user = new User(userLastName,userName,email,password,profile,managerId);
         return addUser(user);
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Boolean updateUserManager(Long userId, Long managerId) {
         User user = getUser(userId);
         User manager = getUser(managerId);
@@ -83,6 +87,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Boolean deleteUser(Long userId) {
         Optional<User> user = userDao.findById(userId);
         if(!user.isPresent()){

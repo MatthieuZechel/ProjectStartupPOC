@@ -7,6 +7,7 @@ import com.fr.tse.poc.startupPOC.dao.WorkedTimeDao;
 import com.fr.tse.poc.startupPOC.service.WorkedTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -86,12 +87,14 @@ public class WorkedTimeServiceImpl implements WorkedTimeService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public WorkedTime addWorkedTime(LocalDateTime startDate, Long duree, User user, Project project) {
         WorkedTime workedTime = new WorkedTime(startDate,duree,user,project);
         return workedTimeDao.save(workedTime);
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public WorkedTime updateWorkedTime(Long workedTimeId, LocalDateTime startDate, Long duree, User user, Project project) {
         WorkedTime workedTimeSelected = getWorkedTime(workedTimeId);
         if(!(workedTimeSelected.getStartDate() != null && startDate == null))

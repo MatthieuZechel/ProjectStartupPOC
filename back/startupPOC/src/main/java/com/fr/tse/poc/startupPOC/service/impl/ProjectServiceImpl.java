@@ -7,6 +7,7 @@ import com.fr.tse.poc.startupPOC.dao.ProjectDao;
 import com.fr.tse.poc.startupPOC.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ProjectServiceImpl implements ProjectService {
     ProjectDao projectDao;
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Project addProject(Project project) {
         return projectDao.save(project);
     }
@@ -42,6 +44,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Project updateProject(Long projectId, String name, Long workLoad, Company client, User projectManager) {
         Project project = getProject(projectId);
         if(project != null){
@@ -59,6 +62,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Project updateProjectManager(Long projectId,User manager) {
         Project project = getProject(projectId);
         if(manager != null){
@@ -69,6 +73,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Project updateProjectWorkLoad(Long projectId,Long workLoad) {
         Project project = getProject(projectId);
         if(workLoad != null){
@@ -79,6 +84,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Project createProject(String name, Long workLoad, Company client, User projectManager) {
         Project project = new Project(name,workLoad,client,projectManager);
         return projectDao.save(project);
@@ -103,6 +109,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public Boolean deleteProject(Long projectId) {
         Optional<Project> project = projectDao.findById(projectId);
         if(!project.isPresent()){

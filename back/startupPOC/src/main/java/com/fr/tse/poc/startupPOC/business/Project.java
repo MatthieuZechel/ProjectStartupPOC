@@ -19,15 +19,17 @@ public class Project {
     private Long workLoad;
 
     @ManyToOne
+    @JoinColumn(name="client_id")
     private Company client;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "projects")
     private List<User> workers;
 
     @ManyToOne
+    @JoinColumn(name="projects_manager_id")
     private User projectManager;
 
-    @OneToMany
+    @OneToMany(mappedBy="project")
     private List<WorkedTime> workedTimes;
 
     public Project(){}
