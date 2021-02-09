@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -90,5 +91,10 @@ public class UserServiceImpl implements UserService {
         }
         userDao.delete(user.get());
         return true;
+    }
+
+    @Override
+    public List<User> getManagerAllUsers(Long managerId) {
+        return getAllUsers().stream().filter(user -> user.getManager().getId().equals(managerId)).collect(Collectors.toList());
     }
 }
