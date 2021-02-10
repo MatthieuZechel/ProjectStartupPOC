@@ -17,11 +17,19 @@ public class AdminController {
     @Autowired
     UserServiceImpl userService;
 
-    @RequestMapping(method = RequestMethod.GET, path = "/getAllManager")
+    @RequestMapping(method = RequestMethod.GET, path = "/getAllManagers")
     @ResponseStatus(HttpStatus.OK)
-    List<User> getAllManager(){
+    List<User> getAllManagers(){
 
         return userService.getAllManager();
+
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/getAllUsers")
+    @ResponseStatus(HttpStatus.OK)
+    List<User> getAllUsers(){
+
+        return userService.getAllUsers();
 
     }
 
