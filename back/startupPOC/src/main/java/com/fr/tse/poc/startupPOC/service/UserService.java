@@ -26,4 +26,6 @@ public interface UserService {
     Boolean deleteUser(Long userId);
 
     List<User> getManagerAllUsers(Long managerId);
+
+    List<User> getAllManager();
 }

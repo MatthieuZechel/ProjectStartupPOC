@@ -1,11 +1,13 @@
 package com.fr.tse.poc.startupPOC.web;
 
+import com.fr.tse.poc.startupPOC.business.Project;
 import com.fr.tse.poc.startupPOC.business.User;
 import com.fr.tse.poc.startupPOC.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -14,6 +16,14 @@ public class AdminController {
 
     @Autowired
     UserServiceImpl userService;
+
+    @RequestMapping(method = RequestMethod.GET, path = "/getAllManager")
+    @ResponseStatus(HttpStatus.OK)
+    List<User> getAllManager(){
+
+        return userService.getAllManager();
+
+    }
 
     @RequestMapping(method = RequestMethod.POST, path = "/createUser")
     @ResponseStatus(HttpStatus.OK)
@@ -51,4 +61,6 @@ public class AdminController {
 
         return userService.deleteUser(userId);
     }
+
+
 }
