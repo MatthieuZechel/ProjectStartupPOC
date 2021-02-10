@@ -9,7 +9,7 @@
     <p>Nom Prénom : {{user.userName}} {{user.userLastName}}</p>
     <p>E-mail : {{user.email}}</p>
     <p>Poste : {{user.profile}}</p>
-    <p>Manager : {{user.manager}}</p>
+    <p>Manager : {{user.manager.userName}} {{user.manager.userLastName}}</p>
     <mat-divider></mat-divider>
     <table mat-table [dataSource]="projets" class="mat-elevation-z8">   
             <!-- Position Column -->
