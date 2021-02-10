@@ -3,6 +3,7 @@ import { HttpClient,HttpParams,  HttpErrorResponse} from '@angular/common/http';
 
 import {  throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { AcroFormPasswordField } from 'jspdf';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class ManagerServiceService {
   private GETALLCOMPANIES_REQ = "http://localhost:8080/getAllCompanies"; // get
   private GETADDPROJECT_REQ = "http://localhost:8080/addProject"; // get
   private GETUPDATEPROJECT_REQ = "http://localhost:8080/updateProject"; // get
+  private GETALLPROJECT_REQ = "http://localhost:8080/getAllProjects"; // get
+  private GETALLMANAGER_REQ = "http://localhost:8080/getAllManagers"; // get
+  private GETALLUSERS_REQ = "http://localhost:8080/getAllUsers"; // get
+  private GETUPDATEUSER_REQ = "http://localhost:8080/updateUser"; // post
+  private GETDELETEUSER_REQ = "http://localhost:8080/user"; // delete
+  private GETCREATEUSER_REQ = "http://localhost:8080/createUser"; // post
 
 
 
@@ -78,6 +85,38 @@ export class ManagerServiceService {
   public sendGetUpdateProjectRequest(projectId, nomProjet, workload, idClient, idManager){
     const options = {projectId: projectId, name: nomProjet, workload: workload, clientId: idClient, projectManagerId: idManager} ;
     return this.httpClient.post(this.GETUPDATEPROJECT_REQ, options);
+  }
+
+
+  public sendGetAllProjectsRequest(){
+    return this.httpClient.get(this.GETALLPROJECT_REQ);
+  }
+
+  public sendGetAllManagerRequest(){
+    return this.httpClient.get(this.GETALLMANAGER_REQ);
+  }
+
+  public sendGetAllUsersRequest(){
+    return this.httpClient.get(this.GETALLUSERS_REQ);
+  }
+
+
+  public sendGetUpdateUserRequest(userId, userLastName, userName, email, password, profile, managerId){
+    const options = { userId: userId, userLastName: userLastName, userName: userName, email: email, password: password, profile: profile , managerId: managerId} ;
+    return this.httpClient.post(this.GETUPDATEUSER_REQ, options);
+  }
+
+  public sendGetCreateUserRequest(userLastName, userName, email, password, profile, managerId){
+    const options = {userLastName: userLastName, userName: userName, email: email, password: password, profile: profile , managerId: managerId} ;
+    return this.httpClient.post(this.GETCREATEUSER_REQ, options);
+  }
+
+  public sendDeleteUserRequest(userId){
+    // Initialize Params Object
+    let params = new HttpParams();
+
+    params = params.append('userId', userId);
+    return this.httpClient.delete(this.GETDELETEUSER_REQ, { params: params });
   }
 
 }

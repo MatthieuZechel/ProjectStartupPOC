@@ -64,7 +64,7 @@ public class AdminController {
 
     @RequestMapping(method = RequestMethod.DELETE,path="/user")
     @ResponseStatus(HttpStatus.OK)
-    Boolean deleteUser(@RequestBody Map<String,String> json){
+    Boolean deleteUser(@RequestParam Map<String,String> json){
         Long userId = Long.parseLong(json.get("userId"));
 
         return userService.deleteUser(userId);

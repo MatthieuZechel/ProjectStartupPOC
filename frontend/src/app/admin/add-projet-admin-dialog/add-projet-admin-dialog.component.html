@@ -21,6 +21,17 @@
     </mat-select>
   </mat-form-field>
 
+  <br>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Manager</mat-label>
+    <mat-select [(value)]="idManager" >
+      <mat-option *ngFor="let manager of ManagerList" [value]="manager.id">
+        {{manager.userName}} {{manager.userLastName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
 </mat-dialog-content>
 
 <mat-dialog-actions align=end>
