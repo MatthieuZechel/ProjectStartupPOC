@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProjetDialogComponent } from 'src/app/manager/add-projet-dialog/add-projet-dialog.component';
 import { ManagerServiceService } from 'src/app/services/manager-service.service';
+import { AddUserAdminDialogComponent } from '../add-user-admin-dialog/add-user-admin-dialog.component';
 
 @Component({
   selector: 'app-home-admin2',
@@ -38,7 +39,7 @@ export class HomeAdmin2Component implements OnInit {
       console.log(data);
       this.ManagerList = data;
     })
-    
+
     this.reloadUsers()
     
   }
@@ -77,8 +78,8 @@ export class HomeAdmin2Component implements OnInit {
 
   }
 
-  ajouterNouveauProjet(){
-    const dialogRef = this.dialog.open(AddProjetDialogComponent);
+  ajouterNouvelUtilisateur(){
+    const dialogRef = this.dialog.open(AddUserAdminDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

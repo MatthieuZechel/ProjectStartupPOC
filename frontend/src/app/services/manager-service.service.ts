@@ -100,7 +100,6 @@ export class ManagerServiceService {
     return this.httpClient.get(this.GETALLUSERS_REQ);
   }
 
-
   public sendGetUpdateUserRequest(userId, userLastName, userName, email, password, profile, managerId){
     const options = { userId: userId, userLastName: userLastName, userName: userName, email: email, password: password, profile: profile , managerId: managerId} ;
     return this.httpClient.post(this.GETUPDATEUSER_REQ, options);
