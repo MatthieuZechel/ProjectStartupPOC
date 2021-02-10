@@ -73,8 +73,11 @@ export class UpdateTimeDialogComponent implements OnInit {
     else{
       this.userId = sessionStorage.getItem("Id");
     }
+
+    console.log(new Date(this.StartingDate).toJSON())
     
-    var StartDate = this.StartingDate.slice(0, 11) + this.heure + ":" + this.minute + ":00";
+    var StartDate = new Date(this.StartingDate).toJSON().slice(0, 11) + this.heure + ":" + this.minute + ":00";
+    
     console.log(StartDate);
     // PROJECT ID a faire
     this.userService.sendUpdateWorkedTimeRequest(this.IdTimeWorked, StartDate,this.Duree, this.userId, 1).subscribe((data: any = [])=>{
