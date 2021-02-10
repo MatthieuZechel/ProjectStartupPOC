@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FullCalendarComponent, CalendarOptions } from '@fullcalendar/angular';
 import {MatDialog} from '@angular/material/dialog';
 import { UserServiceService } from 'src/app/services/user-service.service';
@@ -12,13 +12,14 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./calendar.component.css']
 })
 
-export class CalendarComponent  implements OnInit {
+export class CalendarComponent  implements OnInit, OnChanges {
 
 
-  private eventsSubscription: Subscription;
+  // private eventsSubscription: Subscription;
 
-  // @Input() eventsReload: Observable<void>;
+  // @Input() eventsReload: Observable<void> = new Observable;
 
+  @Input() Onreload: boolean;
 
   @ViewChild(UpdateTimeDialogComponent) updateDialog;
   @ViewChild(AddTimeDialogComponent) AddDialog;
@@ -33,14 +34,12 @@ export class CalendarComponent  implements OnInit {
   calendarOptions: CalendarOptions = {
     timeZone: 'local',
     initialView: 'timeGridWeek',
-    //dateClick: this.handleDateClick.bind(this), // bind is important!
     eventClick: this.handleEventClick.bind(this), // bind is important!
     height: '80vh'
   };
 
   handleEventClick(arg) {
     console.log(arg)
-    //alert('event click! ' + arg)
 
     const dialogRef = this.dialog.open(UpdateTimeDialogComponent, {data: {dataKey: arg } } );
 
@@ -49,9 +48,15 @@ export class CalendarComponent  implements OnInit {
     });
   };
 
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("onchanges")
+    this.reloadCalendar();
+  }
+
   ngOnInit(): void {
 
-    //this.eventsSubscription = this.eventsReload.subscribe(() => this.reloadCalendar());
+    // this.eventsSubscription = this.eventsReload.subscribe(() => this.reloadCalendar());
 
 
     if(sessionStorage.getItem("profile") === ("manager")){
@@ -67,8 +72,9 @@ export class CalendarComponent  implements OnInit {
 
   public reloadCalendar(){
 
-    if(sessionStorage.getItem("profile") === ("manager")){
+    if(sessionStorage.getItem("Profile") == ("manager")){
       this.userId = sessionStorage.getItem("CurrentUserId")
+      
     }
     else{
       this.userId = sessionStorage.getItem("Id");

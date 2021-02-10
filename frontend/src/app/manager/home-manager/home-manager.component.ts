@@ -15,6 +15,7 @@ export class HomeManagerComponent implements OnInit {
   CurrentUser: any = [];
   UserList: any = [];
   userId = sessionStorage.getItem("Id");
+  parentReload : boolean;
 
   ngOnInit(): void {
 
@@ -28,6 +29,7 @@ export class HomeManagerComponent implements OnInit {
   onClickUser(){
     this.setCurrentUser();
     // this.emitEventToChild();
+    this.parentReload = !this.parentReload;
   }
 
   setCurrentUser(){

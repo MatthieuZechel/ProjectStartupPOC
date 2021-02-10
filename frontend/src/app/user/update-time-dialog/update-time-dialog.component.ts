@@ -66,6 +66,14 @@ export class UpdateTimeDialogComponent implements OnInit {
 
   UpdateTime(){
 
+    if(sessionStorage.getItem("Profile") == ("manager")){
+      this.userId = sessionStorage.getItem("CurrentUserId")
+      
+    }
+    else{
+      this.userId = sessionStorage.getItem("Id");
+    }
+    
     var StartDate = this.StartingDate.slice(0, 11) + this.heure + ":" + this.minute + ":00";
     console.log(StartDate);
     // PROJECT ID a faire

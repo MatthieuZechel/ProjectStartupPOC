@@ -30,7 +30,7 @@ export class AddProjetDialogComponent implements OnInit {
 
   creerProjet(){
   
-    this.managerService.sendGetCreateProjectRequest(this.nomProjet, this.workLoad, this.idClient, this.idManager).subscribe((data: any = [])=>{
+    this.managerService.sendGetCreateProjectRequest(this.nomProjet, this.workLoad, this.idClient, this.userId).subscribe((data: any = [])=>{
       console.log(data);
       this.CompanyList = data;
     })
