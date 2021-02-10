@@ -1,0 +1,71 @@
+
+<app-navbar> </app-navbar>
+
+<div class="container" fxLayout="row" style="padding-top: 4rem;">
+
+    <div fxFlex="20%" style="margin: 1rem;">
+        <h2>Utilisateurs</h2>
+
+        <mat-selection-list  [multiple]="false" >
+            <mat-list-option *ngFor="let user of UserList" [value]="user" (click)="loadCurrentUser(user)">
+              {{user.userName}} {{user.userLastName}}
+            </mat-list-option>
+        </mat-selection-list>
+
+    </div>
+
+    <div fxFlex="50%">
+        <mat-card>
+            <mat-card-content>
+                
+                <mat-form-field class="full-width">
+                    <input matInput id="username" [(ngModel)]='username' placeholder="Prénom" [value]="CurrentUser.userName">        
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput id="userlastname" [(ngModel)]='userlastname' placeholder="Nom" [value]="CurrentUser.userLastName">        
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput id="userEmail" [(ngModel)]='userEmail' placeholder="Email" [value]="CurrentUser.email">        
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput id="userPassword" [(ngModel)]='userPassword' type="password" placeholder="Mot De Passe" [value]="CurrentUser.password">        
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Profile</mat-label>
+                    <mat-select [(value)]="profile" >
+                      <mat-option *ngFor="let profile of profileList" [value]="profile">
+                        {{profile.value}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <br>
+                
+                <mat-form-field *ngIf="CurrentUser.profile == 'developer'" appearance="fill">
+                    <mat-label>Manager</mat-label>
+                    <mat-select [(value)]="idManager" >
+                      <mat-option *ngFor="let manager of ManagerList" [value]="manager.id">
+                        {{manager.userName}} {{manager.userLastName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+            </mat-card-content>
+        
+            <mat-card-actions class="login-actions">
+                <button mat-button id="supprimer"  (click)="supprimer()">Supprimer</button>
+                <button mat-raised-button color="primary" id="sauvegarder" (click)="sauvegarder()" type="button">Sauvegarder</button>
+            </mat-card-actions>
+        
+        </mat-card>
+    </div>
+
+    <div fxFlex="20%">
+        <button style="margin: 1rem;" mat-raised-button color="primary" id="retour" [routerLink]="['/admin']" >Gestion des projets</button>
+        <button style="margin: 1rem;" mat-raised-button color="primary" id="ajouterNouvelUtilisateur" (click)="ajouterNouvelUtilisateur()" >Ajouter nouvel utilisateur</button>
+    </div>
+</div>

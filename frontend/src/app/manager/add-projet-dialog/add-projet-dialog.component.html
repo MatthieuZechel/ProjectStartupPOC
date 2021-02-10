@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Ajouter un projet</h2>
+<mat-dialog-content class="mat-typography">
+
+
+
+  <mat-form-field class="full-width">
+    <input id="nomProjet" [(ngModel)]="nomProjet" [ngModelOptions]="{standalone: true}" matInput placeholder="Nom du projet" type="text">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input id="workLoad" [(ngModel)]="workLoad" [ngModelOptions]="{standalone: true}" matInput placeholder="WorkLoad" type="number">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Client</mat-label>
+    <mat-select [(value)]="idClient" >
+      <mat-option *ngFor="let company of CompanyList" [value]="company.id">
+        {{company.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align=end>
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-button [mat-dialog-close]="true" (click)="creerProjet()" cdkFocusInitial>Créer</button>
+</mat-dialog-actions>

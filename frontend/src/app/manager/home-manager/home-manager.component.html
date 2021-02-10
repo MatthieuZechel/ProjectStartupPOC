@@ -1,0 +1,24 @@
+<app-navbar> </app-navbar>
+
+
+<div class="container" fxLayout="row" style="padding-top: 4rem;">
+
+    <div fxFlex="20%" style="margin-top: 1rem;">
+
+        <mat-form-field style="margin: 1rem;"appearance="fill">
+            <mat-label>Sélectionner utilisateur</mat-label>
+            <mat-select [(value)]="CurrentUser" >
+              <mat-option (click)="onClickUser()" *ngFor="let user of UserList" [value]="user">
+                {{user.userName}} {{user.userLastName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <button style="margin: 1rem;" mat-raised-button color="primary" id="GeneratePDF" [routerLink]="['/manager-pdf']" >Générer compte rendu <br> de {{CurrentUser.userName}} {{CurrentUser.userLastName}}</button>
+        <button style="margin: 1rem;" mat-raised-button color="primary" id="GeneratePDF" [routerLink]="['/manager2']" >Gestion des projets</button>
+    </div>
+
+    <div fxFlex="80%">
+        <app-calendar [Onreload]="parentReload" > </app-calendar>
+    </div>
+</div>
